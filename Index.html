@@ -1,7 +1,774 @@
 <!DOCTYPE html>
-<html>
-<head><title>IRA OS</title></head>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IRA OS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --paper: #F7F3EF;
+  --paper-2: #F0EAE4;
+  --paper-3: #E8E0D8;
+  --ink: #2C2420;
+  --ink-2: #6B5E58;
+  --ink-3: #A8998F;
+  --ink-4: #C4B8B0;
+  --rose: #C47D7D;
+  --rose-bright: #B86B6B;
+  --rose-dim: rgba(196,125,125,0.1);
+  --rose-mid: rgba(196,125,125,0.2);
+  --sage: #7A8C72;
+  --sage-dim: rgba(122,140,114,0.12);
+  --warm: #C4962A;
+  --warm-dim: rgba(196,150,42,0.1);
+  --border: rgba(44,36,32,0.1);
+  --border-2: rgba(44,36,32,0.06);
+  --font-display: 'Playfair Display', serif;
+  --font-body: 'DM Sans', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── TOPBAR ── */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 28px;
+  position: sticky;
+  top: 0;
+  background: rgba(247,243,239,0.95);
+  backdrop-filter: blur(12px);
+  z-index: 100;
+  border-bottom: 1px solid var(--border);
+}
+
+.logo {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  color: var(--ink-2);
+  text-transform: uppercase;
+}
+
+.logo em {
+  color: var(--rose);
+  font-style: normal;
+}
+
+.date-label {
+  font-size: 12px;
+  color: var(--ink-3);
+  font-family: var(--font-body);
+  letter-spacing: 0.04em;
+}
+
+.mode-pill {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  background: var(--paper-2);
+  border: 1px solid var(--border);
+  padding: 6px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.mode-pill:hover {
+  border-color: var(--rose);
+  color: var(--rose-bright);
+}
+
+.mode-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--sage);
+  flex-shrink: 0;
+  animation: breathe 3s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.25); }
+}
+
+/* ── MAIN ── */
+.main {
+  flex: 1;
+  padding: 32px 28px 28px;
+  max-width: 1080px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ── DCA ── */
+.dca-block {
+  padding: 36px 32px;
+  background: var(--paper-2);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--rose);
+  position: relative;
+  overflow: hidden;
+}
+
+.dca-block::after {
+  content: '';
+  position: absolute;
+  bottom: -30px;
+  right: -30px;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 1px solid var(--rose-mid);
+  pointer-events: none;
+}
+
+.dca-eyebrow {
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--rose);
+  font-weight: 500;
+  margin-bottom: 14px;
+}
+
+.dca-headline {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--ink);
+  line-height: 1.35;
+  max-width: 620px;
+  margin-bottom: 10px;
+}
+
+.dca-sub {
+  font-size: 12px;
+  color: var(--ink-3);
+  letter-spacing: 0.03em;
+}
+
+/* ── SECTION LABEL ── */
+.section-label {
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+/* ── OUTCOMES ── */
+.outcomes-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.outcome-tile {
+  background: white;
+  border: 1px solid var(--border);
+  padding: 20px 18px 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+  border-radius: 2px;
+}
+
+.outcome-tile:hover {
+  border-color: var(--rose);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(196,125,125,0.1);
+}
+
+.outcome-num {
+  font-family: var(--font-display);
+  font-size: 38px;
+  font-weight: 400;
+  color: var(--ink);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.outcome-name {
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.outcome-bar {
+  height: 2px;
+  background: var(--paper-3);
+  border-radius: 1px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.outcome-bar-fill {
+  height: 100%;
+  background: var(--rose);
+  border-radius: 1px;
+}
+
+.outcome-q {
+  font-size: 11px;
+  color: var(--ink-4);
+  font-family: var(--font-display);
+  font-style: italic;
+  line-height: 1.4;
+}
+
+/* ── TWO COL ── */
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+/* ── PANEL ── */
+.panel {
+  background: white;
+  border: 1px solid var(--border);
+  padding: 22px 22px 20px;
+  border-radius: 2px;
+}
+
+/* ── SIGNAL ── */
+.signal-text {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 400;
+  color: var(--ink);
+  line-height: 1.55;
+  margin-bottom: 10px;
+}
+
+.signal-sub {
+  font-size: 12px;
+  color: var(--ink-2);
+  line-height: 1.75;
+}
+
+/* ── CONSTRAINT ── */
+.constraint-panel {
+  background: white;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--sage);
+  padding: 22px 22px 20px;
+  border-radius: 0 2px 2px 0;
+}
+
+.constraint-text {
+  font-family: var(--font-display);
+  font-size: 15px;
+  color: var(--ink);
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.mission-badge {
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--sage);
+  background: var(--sage-dim);
+  border: 1px solid rgba(122,140,114,0.25);
+  padding: 4px 10px;
+  border-radius: 2px;
+  display: inline-block;
+}
+
+/* ── LOOPS ── */
+.loop-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.loop-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 12px;
+  background: var(--paper);
+  border: 1px solid var(--border-2);
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.loop-item:hover {
+  background: var(--paper-2);
+  border-color: var(--rose-mid);
+}
+
+.loop-item.done { opacity: 0.35; }
+.loop-item.done .loop-name { text-decoration: line-through; }
+
+.loop-check {
+  width: 18px; height: 18px;
+  border: 1.5px solid var(--ink-4);
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  color: transparent;
+  transition: all 0.15s;
+}
+
+.loop-item:hover .loop-check {
+  border-color: var(--rose);
+  color: var(--rose);
+}
+
+.loop-item.done .loop-check {
+  background: var(--rose);
+  border-color: var(--rose);
+  color: white;
+}
+
+.loop-name {
+  flex: 1;
+  font-size: 13px;
+  color: var(--ink);
+}
+
+.loop-tag {
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+}
+
+/* ── MISSIONS ── */
+.mission-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.mission-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 12px;
+  background: var(--paper);
+  border: 1px solid var(--border-2);
+  border-radius: 2px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.mission-row:hover { background: var(--paper-2); }
+
+.mission-info { flex: 1; }
+
+.mission-name {
+  font-size: 13px;
+  color: var(--ink);
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+
+.mission-stage {
+  font-size: 11px;
+  color: var(--ink-3);
+}
+
+.m-status {
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: 20px;
+  font-weight: 500;
+  border: 1px solid;
+  white-space: nowrap;
+}
+
+.m-active { color: var(--sage); border-color: rgba(122,140,114,0.3); background: var(--sage-dim); }
+.m-blocked { color: var(--rose-bright); border-color: var(--rose-mid); background: var(--rose-dim); }
+.m-incubating { color: var(--ink-3); border-color: var(--border); background: var(--paper-2); }
+
+.mission-prob {
+  font-family: var(--font-display);
+  font-size: 14px;
+  color: var(--ink-3);
+  min-width: 34px;
+  text-align: right;
+  font-style: italic;
+}
+
+/* ── DECISIONS ── */
+.decision-row {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border-2);
+}
+
+.decision-row:last-child { border-bottom: none; padding-bottom: 0; }
+
+.decision-text {
+  font-family: var(--font-display);
+  font-size: 14px;
+  color: var(--ink);
+  line-height: 1.65;
+  margin-bottom: 7px;
+}
+
+.decision-meta {
+  display: flex;
+  gap: 14px;
+  font-size: 10px;
+  color: var(--ink-4);
+  letter-spacing: 0.04em;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.conf-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 4px;
+  vertical-align: middle;
+}
+
+/* ── ADD BTN ── */
+.add-btn {
+  width: 20px; height: 20px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--ink-3);
+  font-size: 14px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.15s;
+  border-radius: 50%;
+  line-height: 1;
+}
+
+.add-btn:hover {
+  border-color: var(--rose);
+  color: var(--rose);
+  background: var(--rose-dim);
+}
+
+/* ── BOTTOM NAV ── */
+.bottom-nav {
+  position: sticky;
+  bottom: 0;
+  background: rgba(247,243,239,0.97);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid var(--border);
+  padding: 0 28px;
+  display: flex;
+  align-items: center;
+  z-index: 100;
+}
+
+.nav-item {
+  padding: 16px 12px;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+  cursor: pointer;
+  transition: color 0.15s;
+  border-bottom: 2px solid transparent;
+  font-weight: 500;
+}
+
+.nav-item:hover { color: var(--ink-2); }
+
+.nav-item.active {
+  color: var(--rose-bright);
+  border-bottom-color: var(--rose);
+}
+
+.nav-spacer { flex: 1; }
+
+.review-btn {
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  background: transparent;
+  border: 1px solid var(--border);
+  padding: 7px 16px;
+  cursor: pointer;
+  font-family: var(--font-body);
+  border-radius: 20px;
+  transition: all 0.15s;
+}
+
+.review-btn:hover {
+  color: var(--ink);
+  border-color: var(--ink-2);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 680px) {
+  .outcomes-row { grid-template-columns: repeat(2, 1fr); }
+  .grid-2 { grid-template-columns: 1fr; }
+  .main { padding: 20px 16px 16px; gap: 16px; }
+  .topbar { padding: 14px 16px; }
+  .date-label { display: none; }
+  .dca-headline { font-size: 22px; }
+  .dca-block { padding: 24px 20px; }
+  .bottom-nav { padding: 0 16px; }
+  .nav-item { padding: 14px 8px; font-size: 9px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mode-dot { animation: none; }
+  * { transition: none !important; }
+}
+</style>
+</head>
 <body>
-<h1>IRA OS — Coming Soon</h1>
+
+<!-- Top bar -->
+<header class="topbar">
+  <div class="logo"><em>IRA</em> OS</div>
+  <div class="date-label" id="date-label"></div>
+  <div class="mode-pill" onclick="cycleMode()">
+    <span class="mode-dot"></span>
+    <span id="mode-label">Mode 1 — Capacity</span>
+  </div>
+</header>
+
+<main class="main">
+
+  <!-- DCA -->
+  <div class="dca-block">
+    <div class="dca-eyebrow">Dominant Chief Aim</div>
+    <div class="dca-headline">Build a sovereign, scalable business that creates lasting freedom</div>
+    <div class="dca-sub">Every project exists because it moves this forward</div>
+  </div>
+
+  <!-- Outcomes -->
+  <div class="outcomes-row">
+    <div class="outcome-tile">
+      <div class="outcome-num">74</div>
+      <div class="outcome-name">Capability</div>
+      <div class="outcome-bar"><div class="outcome-bar-fill" style="width:74%"></div></div>
+      <div class="outcome-q">What am I building?</div>
+    </div>
+    <div class="outcome-tile">
+      <div class="outcome-num">61</div>
+      <div class="outcome-name">Credibility</div>
+      <div class="outcome-bar"><div class="outcome-bar-fill" style="width:61%"></div></div>
+      <div class="outcome-q">What evidence exists?</div>
+    </div>
+    <div class="outcome-tile">
+      <div class="outcome-num">58</div>
+      <div class="outcome-name">Stability</div>
+      <div class="outcome-bar"><div class="outcome-bar-fill" style="width:58%"></div></div>
+      <div class="outcome-q">What becomes more stable?</div>
+    </div>
+    <div class="outcome-tile">
+      <div class="outcome-num">82</div>
+      <div class="outcome-name">Autonomy</div>
+      <div class="outcome-bar"><div class="outcome-bar-fill" style="width:82%"></div></div>
+      <div class="outcome-q">Does this expand future choice?</div>
+    </div>
+  </div>
+
+  <!-- Signal + Constraint -->
+  <div class="grid-2">
+    <div class="panel">
+      <div class="section-label">Today's Signal</div>
+      <div class="signal-text">The governance structure needs resolving before capital can move</div>
+      <div class="signal-sub">Three active missions are waiting on the same upstream decision. Until the structure is formalised, downstream execution is constrained at every level.</div>
+    </div>
+    <div class="constraint-panel">
+      <div class="section-label">Biggest Constraint</div>
+      <div class="constraint-text">Company structure not yet formalised — blocking legal agreements, investor discussions, and revenue collection</div>
+      <span class="mission-badge">Governance</span>
+    </div>
+  </div>
+
+  <!-- Close Today + Missions -->
+  <div class="grid-2">
+    <div class="panel">
+      <div class="section-label">
+        Close Today
+        <button class="add-btn">+</button>
+      </div>
+      <div class="loop-list">
+        <div class="loop-item" onclick="toggleLoop(this)">
+          <div class="loop-check">✓</div>
+          <span class="loop-name">Draft governance term sheet</span>
+          <span class="loop-tag">Governance</span>
+        </div>
+        <div class="loop-item" onclick="toggleLoop(this)">
+          <div class="loop-check">✓</div>
+          <span class="loop-name">Send proposal — Project Tahi</span>
+          <span class="loop-tag">Business</span>
+        </div>
+        <div class="loop-item" onclick="toggleLoop(this)">
+          <div class="loop-check">✓</div>
+          <span class="loop-name">Review insurance renewal quote</span>
+          <span class="loop-tag">Wealth</span>
+        </div>
+        <div class="loop-item" onclick="toggleLoop(this)">
+          <div class="loop-check">✓</div>
+          <span class="loop-name">Confirm school meeting time</span>
+          <span class="loop-tag">Whānau</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="section-label">
+        Strategic Missions
+        <button class="add-btn">+</button>
+      </div>
+      <div class="mission-list">
+        <div class="mission-row">
+          <div class="mission-info">
+            <div class="mission-name">Business Formation</div>
+            <div class="mission-stage">Awaiting legal sign-off</div>
+          </div>
+          <span class="m-status m-blocked">Blocked</span>
+          <div class="mission-prob">40%</div>
+        </div>
+        <div class="mission-row">
+          <div class="mission-info">
+            <div class="mission-name">Client Pipeline — Q3</div>
+            <div class="mission-stage">Proposal stage, 3 active</div>
+          </div>
+          <span class="m-status m-active">Active</span>
+          <div class="mission-prob">68%</div>
+        </div>
+        <div class="mission-row">
+          <div class="mission-info">
+            <div class="mission-name">Knowledge Platform</div>
+            <div class="mission-stage">Architecture phase</div>
+          </div>
+          <span class="m-status m-incubating">Incubating</span>
+          <div class="mission-prob">55%</div>
+        </div>
+        <div class="mission-row">
+          <div class="mission-info">
+            <div class="mission-name">Health Foundation</div>
+            <div class="mission-stage">Habits established</div>
+          </div>
+          <span class="m-status m-active">Active</span>
+          <div class="mission-prob">80%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Decision Journal -->
+  <div class="panel">
+    <div class="section-label">
+      Decision Journal
+      <button class="add-btn">+</button>
+    </div>
+    <div>
+      <div class="decision-row">
+        <div class="decision-text">Declined the board advisory role — insufficient autonomy, wrong stage, would dilute focus from the DCA.</div>
+        <div class="decision-meta">
+          <span>19 Jun</span>
+          <span><span class="conf-dot" style="background:#7A8C72"></span>High confidence</span>
+          <span>Governance · Autonomy</span>
+        </div>
+      </div>
+      <div class="decision-row">
+        <div class="decision-text">Delayed investor conversation until structure is clean — credibility risk outweighs speed.</div>
+        <div class="decision-meta">
+          <span>15 Jun</span>
+          <span><span class="conf-dot" style="background:#C4962A"></span>Medium confidence</span>
+          <span>Business · Credibility</span>
+        </div>
+      </div>
+      <div class="decision-row">
+        <div class="decision-text">Committed to daily 45-min deep work block — capability building is not negotiable.</div>
+        <div class="decision-meta">
+          <span>10 Jun</span>
+          <span><span class="conf-dot" style="background:#C47D7D"></span>Committed</span>
+          <span>Health · Capability</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- Bottom nav -->
+<nav class="bottom-nav">
+  <div class="nav-item active">Dashboard</div>
+  <div class="nav-item">Missions</div>
+  <div class="nav-item">Loops</div>
+  <div class="nav-item">Evidence</div>
+  <div class="nav-item">Decisions</div>
+  <div class="nav-spacer"></div>
+  <button class="review-btn">Weekly Review</button>
+</nav>
+
+<script>
+  const d = new Date();
+  const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  document.getElementById('date-label').textContent = `${days[d.getDay()]}, ${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()}`;
+
+  const modes = [
+    { label: 'Mode 1 — Capacity', color: '#7A8C72' },
+    { label: 'Mode 1½ — Visibility', color: '#C4962A' },
+    { label: 'Mode 2 — Execution', color: '#C47D7D' }
+  ];
+  let modeIdx = 0;
+  function cycleMode() {
+    modeIdx = (modeIdx + 1) % modes.length;
+    document.getElementById('mode-label').textContent = modes[modeIdx].label;
+    document.querySelector('.mode-dot').style.background = modes[modeIdx].color;
+  }
+
+  function toggleLoop(item) {
+    item.classList.toggle('done');
+  }
+
+  document.querySelectorAll('.nav-item').forEach(item => {
+    item.addEventListener('click', function() {
+      document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+</script>
 </body>
 </html>
