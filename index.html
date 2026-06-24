@@ -67,15 +67,11 @@ body {
   text-transform: uppercase;
 }
 
-.logo em {
-  color: var(--rose);
-  font-style: normal;
-}
+.logo em { color: var(--rose); font-style: normal; }
 
 .date-label {
   font-size: 12px;
   color: var(--ink-3);
-  font-family: var(--font-body);
   letter-spacing: 0.04em;
 }
 
@@ -96,10 +92,7 @@ body {
   transition: all 0.2s;
 }
 
-.mode-pill:hover {
-  border-color: var(--rose);
-  color: var(--rose-bright);
-}
+.mode-pill:hover { border-color: var(--rose); color: var(--rose-bright); }
 
 .mode-dot {
   width: 6px; height: 6px;
@@ -117,18 +110,44 @@ body {
 /* ── MAIN ── */
 .main {
   flex: 1;
-  padding: 32px 28px 28px;
+  padding: 28px 28px 28px;
   max-width: 1080px;
   width: 100%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 16px;
+}
+
+/* ── OPERATING PRINCIPLE ── */
+.principle-bar {
+  padding: 12px 20px;
+  background: var(--ink);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.principle-label {
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  white-space: nowrap;
+  font-weight: 500;
+}
+
+.principle-text {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-style: italic;
+  color: var(--paper);
+  line-height: 1.4;
 }
 
 /* ── DCA ── */
 .dca-block {
-  padding: 36px 32px;
+  padding: 28px 28px 24px;
   background: var(--paper-2);
   border: 1px solid var(--border);
   border-top: 3px solid var(--rose);
@@ -139,10 +158,8 @@ body {
 .dca-block::after {
   content: '';
   position: absolute;
-  bottom: -30px;
-  right: -30px;
-  width: 120px;
-  height: 120px;
+  bottom: -30px; right: -30px;
+  width: 100px; height: 100px;
   border-radius: 50%;
   border: 1px solid var(--rose-mid);
   pointer-events: none;
@@ -154,50 +171,30 @@ body {
   text-transform: uppercase;
   color: var(--rose);
   font-weight: 500;
-  margin-bottom: 14px;
+  margin-bottom: 10px;
 }
 
 .dca-headline {
   font-family: var(--font-display);
-  font-size: 28px;
+  font-size: 22px;
   font-weight: 400;
   font-style: italic;
   color: var(--ink);
-  line-height: 1.35;
-  max-width: 620px;
-  margin-bottom: 10px;
-}
-
-.dca-sub {
-  font-size: 12px;
-  color: var(--ink-3);
-  letter-spacing: 0.03em;
-}
-
-/* ── SECTION LABEL ── */
-.section-label {
-  font-size: 9px;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 12px;
+  line-height: 1.4;
+  max-width: 680px;
 }
 
 /* ── OUTCOMES ── */
 .outcomes-row {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
+  gap: 10px;
 }
 
 .outcome-tile {
   background: white;
   border: 1px solid var(--border);
-  padding: 20px 18px 16px;
+  padding: 18px 16px 14px;
   cursor: pointer;
   transition: all 0.2s;
   border-radius: 2px;
@@ -211,7 +208,7 @@ body {
 
 .outcome-num {
   font-family: var(--font-display);
-  font-size: 38px;
+  font-size: 34px;
   font-weight: 400;
   color: var(--ink);
   line-height: 1;
@@ -224,7 +221,7 @@ body {
   text-transform: uppercase;
   color: var(--ink-3);
   font-weight: 500;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .outcome-bar {
@@ -232,7 +229,7 @@ body {
   background: var(--paper-3);
   border-radius: 1px;
   overflow: hidden;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .outcome-bar-fill {
@@ -242,7 +239,7 @@ body {
 }
 
 .outcome-q {
-  font-size: 11px;
+  font-size: 10px;
   color: var(--ink-4);
   font-family: var(--font-display);
   font-style: italic;
@@ -260,18 +257,30 @@ body {
 .panel {
   background: white;
   border: 1px solid var(--border);
-  padding: 22px 22px 20px;
+  padding: 20px 20px 18px;
   border-radius: 2px;
+}
+
+.section-label {
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
 }
 
 /* ── SIGNAL ── */
 .signal-text {
   font-family: var(--font-display);
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 400;
   color: var(--ink);
   line-height: 1.55;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .signal-sub {
@@ -285,29 +294,33 @@ body {
   background: white;
   border: 1px solid var(--border);
   border-left: 3px solid var(--sage);
-  padding: 22px 22px 20px;
+  padding: 20px 20px 18px;
   border-radius: 0 2px 2px 0;
 }
 
 .constraint-text {
   font-family: var(--font-display);
-  font-size: 15px;
+  font-size: 14px;
   color: var(--ink);
   line-height: 1.6;
   margin-bottom: 12px;
 }
 
-.mission-badge {
+.tag {
   font-size: 9px;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--sage);
-  background: var(--sage-dim);
-  border: 1px solid rgba(122,140,114,0.25);
-  padding: 4px 10px;
+  padding: 3px 9px;
   border-radius: 2px;
   display: inline-block;
+  margin-right: 4px;
+  margin-bottom: 4px;
 }
+
+.tag-sage { color: var(--sage); background: var(--sage-dim); border: 1px solid rgba(122,140,114,0.25); }
+.tag-rose { color: var(--rose-bright); background: var(--rose-dim); border: 1px solid var(--rose-mid); }
+.tag-warm { color: var(--warm); background: var(--warm-dim); border: 1px solid rgba(196,150,42,0.25); }
+.tag-ink { color: var(--ink-3); background: var(--paper-2); border: 1px solid var(--border); }
 
 /* ── LOOPS ── */
 .loop-list {
@@ -328,11 +341,7 @@ body {
   transition: all 0.15s;
 }
 
-.loop-item:hover {
-  background: var(--paper-2);
-  border-color: var(--rose-mid);
-}
-
+.loop-item:hover { background: var(--paper-2); border-color: var(--rose-mid); }
 .loop-item.done { opacity: 0.35; }
 .loop-item.done .loop-name { text-decoration: line-through; }
 
@@ -349,63 +358,89 @@ body {
   transition: all 0.15s;
 }
 
-.loop-item:hover .loop-check {
-  border-color: var(--rose);
-  color: var(--rose);
-}
+.loop-item:hover .loop-check { border-color: var(--rose); color: var(--rose); }
+.loop-item.done .loop-check { background: var(--rose); border-color: var(--rose); color: white; }
 
-.loop-item.done .loop-check {
-  background: var(--rose);
-  border-color: var(--rose);
-  color: white;
-}
-
-.loop-name {
-  flex: 1;
-  font-size: 13px;
-  color: var(--ink);
-}
-
-.loop-tag {
-  font-size: 9px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--ink-4);
-}
+.loop-name { flex: 1; font-size: 13px; color: var(--ink); }
+.loop-tag { font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-4); }
 
 /* ── MISSIONS ── */
-.mission-list {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+.mission-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
 }
 
-.mission-row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px 12px;
-  background: var(--paper);
-  border: 1px solid var(--border-2);
+.mission-card {
+  background: white;
+  border: 1px solid var(--border);
+  padding: 20px 18px 18px;
   border-radius: 2px;
   cursor: pointer;
-  transition: background 0.15s;
+  transition: all 0.2s;
+  position: relative;
+  overflow: hidden;
 }
 
-.mission-row:hover { background: var(--paper-2); }
-
-.mission-info { flex: 1; }
-
-.mission-name {
-  font-size: 13px;
-  color: var(--ink);
-  font-weight: 500;
-  margin-bottom: 2px;
+.mission-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
 }
 
-.mission-stage {
-  font-size: 11px;
+.mission-card.card-rose::before { background: var(--rose); }
+.mission-card.card-sage::before { background: var(--sage); }
+.mission-card.card-warm::before { background: var(--warm); }
+
+.mission-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(44,36,32,0.08);
+}
+
+.mission-card-label {
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
   color: var(--ink-3);
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.mission-card-name {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+
+.mission-card-dca {
+  font-size: 12px;
+  color: var(--ink-2);
+  line-height: 1.6;
+  margin-bottom: 14px;
+  font-style: italic;
+  font-family: var(--font-display);
+}
+
+.mission-card-outcomes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 14px;
+}
+
+.mission-card-stage {
+  font-size: 10px;
+  color: var(--ink-3);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--border-2);
+  padding-top: 12px;
+  margin-top: 4px;
 }
 
 .m-status {
@@ -422,19 +457,11 @@ body {
 .m-active { color: var(--sage); border-color: rgba(122,140,114,0.3); background: var(--sage-dim); }
 .m-blocked { color: var(--rose-bright); border-color: var(--rose-mid); background: var(--rose-dim); }
 .m-incubating { color: var(--ink-3); border-color: var(--border); background: var(--paper-2); }
-
-.mission-prob {
-  font-family: var(--font-display);
-  font-size: 14px;
-  color: var(--ink-3);
-  min-width: 34px;
-  text-align: right;
-  font-style: italic;
-}
+.m-waiting { color: var(--warm); border-color: rgba(196,150,42,0.3); background: var(--warm-dim); }
 
 /* ── DECISIONS ── */
 .decision-row {
-  padding: 16px 0;
+  padding: 14px 0;
   border-bottom: 1px solid var(--border-2);
 }
 
@@ -445,12 +472,12 @@ body {
   font-size: 14px;
   color: var(--ink);
   line-height: 1.65;
-  margin-bottom: 7px;
+  margin-bottom: 6px;
 }
 
 .decision-meta {
   display: flex;
-  gap: 14px;
+  gap: 12px;
   font-size: 10px;
   color: var(--ink-4);
   letter-spacing: 0.04em;
@@ -477,14 +504,25 @@ body {
   display: flex; align-items: center; justify-content: center;
   transition: all 0.15s;
   border-radius: 50%;
-  line-height: 1;
 }
 
-.add-btn:hover {
-  border-color: var(--rose);
-  color: var(--rose);
-  background: var(--rose-dim);
+.add-btn:hover { border-color: var(--rose); color: var(--rose); background: var(--rose-dim); }
+
+/* ── ALL MISSIONS LINK ── */
+.all-missions {
+  text-align: center;
+  padding: 12px;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  cursor: pointer;
+  transition: color 0.15s;
+  border: 1px dashed var(--border);
+  border-radius: 2px;
 }
+
+.all-missions:hover { color: var(--rose); border-color: var(--rose-mid); }
 
 /* ── BOTTOM NAV ── */
 .bottom-nav {
@@ -512,12 +550,7 @@ body {
 }
 
 .nav-item:hover { color: var(--ink-2); }
-
-.nav-item.active {
-  color: var(--rose-bright);
-  border-bottom-color: var(--rose);
-}
-
+.nav-item.active { color: var(--rose-bright); border-bottom-color: var(--rose); }
 .nav-spacer { flex: 1; }
 
 .review-btn {
@@ -534,22 +567,21 @@ body {
   transition: all 0.15s;
 }
 
-.review-btn:hover {
-  color: var(--ink);
-  border-color: var(--ink-2);
-}
+.review-btn:hover { color: var(--ink); border-color: var(--ink-2); }
 
 /* ── RESPONSIVE ── */
 @media (max-width: 680px) {
   .outcomes-row { grid-template-columns: repeat(2, 1fr); }
   .grid-2 { grid-template-columns: 1fr; }
-  .main { padding: 20px 16px 16px; gap: 16px; }
+  .mission-cards { grid-template-columns: 1fr; }
+  .main { padding: 16px 16px 16px; gap: 14px; }
   .topbar { padding: 14px 16px; }
   .date-label { display: none; }
-  .dca-headline { font-size: 22px; }
-  .dca-block { padding: 24px 20px; }
+  .dca-headline { font-size: 18px; }
+  .dca-block { padding: 20px 18px; }
   .bottom-nav { padding: 0 16px; }
   .nav-item { padding: 14px 8px; font-size: 9px; }
+  .principle-bar { padding: 10px 16px; flex-direction: column; align-items: flex-start; gap: 4px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -559,6 +591,12 @@ body {
 </style>
 </head>
 <body>
+
+<!-- Operating Principle -->
+<div class="principle-bar">
+  <span class="principle-label">Operating Principle</span>
+  <span class="principle-text">I solve problems once, then build systems so they stay solved.</span>
+</div>
 
 <!-- Top bar -->
 <header class="topbar">
@@ -575,8 +613,7 @@ body {
   <!-- DCA -->
   <div class="dca-block">
     <div class="dca-eyebrow">Dominant Chief Aim</div>
-    <div class="dca-headline">Build a sovereign, scalable business that creates lasting freedom</div>
-    <div class="dca-sub">Every project exists because it moves this forward</div>
+    <div class="dca-headline">Build practical systems that strengthen capability, credibility, stability and autonomy — for myself, my whānau and future generations.</div>
   </div>
 
   <!-- Outcomes -->
@@ -611,17 +648,17 @@ body {
   <div class="grid-2">
     <div class="panel">
       <div class="section-label">Today's Signal</div>
-      <div class="signal-text">The governance structure needs resolving before capital can move</div>
-      <div class="signal-sub">Three active missions are waiting on the same upstream decision. Until the structure is formalised, downstream execution is constrained at every level.</div>
+      <div class="signal-text">The constraint right now is open loops. Close them and everything moves.</div>
+      <div class="signal-sub">Two loops sitting open today. Both practical. Both closeable. Nothing else deserves energy until these are done.</div>
     </div>
     <div class="constraint-panel">
       <div class="section-label">Biggest Constraint</div>
-      <div class="constraint-text">Company structure not yet formalised — blocking legal agreements, investor discussions, and revenue collection</div>
-      <span class="mission-badge">Governance</span>
+      <div class="constraint-text">Open loops creating drag across all missions — close them to free the next level of progress</div>
+      <span class="tag tag-ink">All Missions</span>
     </div>
   </div>
 
-  <!-- Close Today + Missions -->
+  <!-- Close Today + Loops -->
   <div class="grid-2">
     <div class="panel">
       <div class="section-label">
@@ -631,102 +668,103 @@ body {
       <div class="loop-list">
         <div class="loop-item" onclick="toggleLoop(this)">
           <div class="loop-check">✓</div>
-          <span class="loop-name">Draft governance term sheet</span>
-          <span class="loop-tag">Governance</span>
-        </div>
-        <div class="loop-item" onclick="toggleLoop(this)">
-          <div class="loop-check">✓</div>
-          <span class="loop-name">Send proposal — Project Tahi</span>
+          <span class="loop-name">Fix spray tan machine</span>
           <span class="loop-tag">Business</span>
         </div>
         <div class="loop-item" onclick="toggleLoop(this)">
           <div class="loop-check">✓</div>
-          <span class="loop-name">Review insurance renewal quote</span>
-          <span class="loop-tag">Wealth</span>
-        </div>
-        <div class="loop-item" onclick="toggleLoop(this)">
-          <div class="loop-check">✓</div>
-          <span class="loop-name">Confirm school meeting time</span>
-          <span class="loop-tag">Whānau</span>
+          <span class="loop-name">File tuka Hine — change of trustee</span>
+          <span class="loop-tag">Governance</span>
         </div>
       </div>
     </div>
 
     <div class="panel">
-      <div class="section-label">
-        Strategic Missions
-        <button class="add-btn">+</button>
-      </div>
-      <div class="mission-list">
-        <div class="mission-row">
-          <div class="mission-info">
-            <div class="mission-name">Business Formation</div>
-            <div class="mission-stage">Awaiting legal sign-off</div>
+      <div class="section-label">Decision Journal <button class="add-btn">+</button></div>
+      <div>
+        <div class="decision-row">
+          <div class="decision-text">Separated ŪKAIPŌ from DCA — it is the highest-impact mission, not the aim itself.</div>
+          <div class="decision-meta">
+            <span>Today</span>
+            <span><span class="conf-dot" style="background:#7A8C72"></span>High confidence</span>
           </div>
-          <span class="m-status m-blocked">Blocked</span>
-          <div class="mission-prob">40%</div>
         </div>
-        <div class="mission-row">
-          <div class="mission-info">
-            <div class="mission-name">Client Pipeline — Q3</div>
-            <div class="mission-stage">Proposal stage, 3 active</div>
+        <div class="decision-row">
+          <div class="decision-text">Identified the real pattern — I don't solve from interest, I solve from problems. That explains everything built.</div>
+          <div class="decision-meta">
+            <span>This week</span>
+            <span><span class="conf-dot" style="background:#C4962A"></span>Clarifying</span>
           </div>
-          <span class="m-status m-active">Active</span>
-          <div class="mission-prob">68%</div>
         </div>
-        <div class="mission-row">
-          <div class="mission-info">
-            <div class="mission-name">Knowledge Platform</div>
-            <div class="mission-stage">Architecture phase</div>
+        <div class="decision-row">
+          <div class="decision-text">Close open loops before opening new ones — drag is the current constraint.</div>
+          <div class="decision-meta">
+            <span>Today</span>
+            <span><span class="conf-dot" style="background:#C47D7D"></span>Committed</span>
           </div>
-          <span class="m-status m-incubating">Incubating</span>
-          <div class="mission-prob">55%</div>
-        </div>
-        <div class="mission-row">
-          <div class="mission-info">
-            <div class="mission-name">Health Foundation</div>
-            <div class="mission-stage">Habits established</div>
-          </div>
-          <span class="m-status m-active">Active</span>
-          <div class="mission-prob">80%</div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Decision Journal -->
-  <div class="panel">
-    <div class="section-label">
-      Decision Journal
-      <button class="add-btn">+</button>
+  <!-- Top 3 Active Missions -->
+  <div>
+    <div class="section-label" style="margin-bottom:14px">
+      Active Missions — Top 3
     </div>
-    <div>
-      <div class="decision-row">
-        <div class="decision-text">Declined the board advisory role — insufficient autonomy, wrong stage, would dilute focus from the DCA.</div>
-        <div class="decision-meta">
-          <span>19 Jun</span>
-          <span><span class="conf-dot" style="background:#7A8C72"></span>High confidence</span>
-          <span>Governance · Autonomy</span>
+    <div class="mission-cards">
+
+      <div class="mission-card card-rose">
+        <div class="mission-card-label">Mission 1</div>
+        <div class="mission-card-name">Personal OS</div>
+        <div class="mission-card-dca">Build the world's easiest high-leverage personal operating system.</div>
+        <div class="mission-card-outcomes">
+          <span class="tag tag-rose">Capability</span>
+          <span class="tag tag-rose">Credibility</span>
+          <span class="tag tag-rose">Stability</span>
+          <span class="tag tag-rose">Autonomy</span>
+        </div>
+        <div class="mission-card-stage">
+          <span>Building now</span>
+          <span class="m-status m-active">Active</span>
         </div>
       </div>
-      <div class="decision-row">
-        <div class="decision-text">Delayed investor conversation until structure is clean — credibility risk outweighs speed.</div>
-        <div class="decision-meta">
-          <span>15 Jun</span>
-          <span><span class="conf-dot" style="background:#C4962A"></span>Medium confidence</span>
-          <span>Business · Credibility</span>
+
+      <div class="mission-card card-sage">
+        <div class="mission-card-label">Mission 2</div>
+        <div class="mission-card-name">Governance</div>
+        <div class="mission-card-dca">Build governance systems that outlast individuals.</div>
+        <div class="mission-card-outcomes">
+          <span class="tag tag-sage">Capability</span>
+          <span class="tag tag-sage">Credibility</span>
+          <span class="tag tag-sage">Stability</span>
+        </div>
+        <div class="mission-card-stage">
+          <span>Tuka Hine — trustee filing</span>
+          <span class="m-status m-active">Active</span>
         </div>
       </div>
-      <div class="decision-row">
-        <div class="decision-text">Committed to daily 45-min deep work block — capability building is not negotiable.</div>
-        <div class="decision-meta">
-          <span>10 Jun</span>
-          <span><span class="conf-dot" style="background:#C47D7D"></span>Committed</span>
-          <span>Health · Capability</span>
+
+      <div class="mission-card card-warm">
+        <div class="mission-card-label">Mission 3</div>
+        <div class="mission-card-name">Rauwhenua · Ūkaipō</div>
+        <div class="mission-card-dca">Make Rauwhenua a recognised, mainstream model of maternity care.</div>
+        <div class="mission-card-outcomes">
+          <span class="tag tag-warm">Capability</span>
+          <span class="tag tag-warm">Credibility</span>
+          <span class="tag tag-warm">Stability</span>
+          <span class="tag tag-warm">Autonomy</span>
+        </div>
+        <div class="mission-card-stage">
+          <span>Highest impact mission</span>
+          <span class="m-status m-active">Active</span>
         </div>
       </div>
+
     </div>
   </div>
+
+  <div class="all-missions">View all 8 missions →</div>
 
 </main>
 
