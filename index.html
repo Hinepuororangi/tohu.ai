@@ -6,6 +6,7 @@
 <title>Manifest Smarter</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -23,7 +24,6 @@
   --sand-dim: rgba(196,168,130,0.15);
   --sage: #8A9E82;
   --sage-dim: rgba(138,158,130,0.12);
-  --warm: #C4A882;
   --ink: #2A1A12;
   --ink-2: #5C3D2E;
   --ink-3: #9B7A6A;
@@ -47,7 +47,6 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* ── PRINCIPLE BAR ── */
 .principle-bar {
   background: var(--cacao);
   padding: 11px 28px;
@@ -70,10 +69,8 @@ body {
   font-size: 13px;
   font-style: italic;
   color: #F5EDE4;
-  font-weight: 400;
 }
 
-/* ── TOPBAR ── */
 .topbar {
   display: flex;
   align-items: center;
@@ -95,19 +92,9 @@ body {
   color: var(--cacao);
 }
 
-.logo sup {
-  font-size: 9px;
-  font-weight: 400;
-  vertical-align: super;
-  letter-spacing: 0.05em;
-  color: var(--ink-3);
-}
+.logo sup { font-size: 9px; font-weight: 400; vertical-align: super; color: var(--ink-3); }
 
-.date-label {
-  font-size: 11px;
-  color: var(--ink-3);
-  letter-spacing: 0.05em;
-}
+.date-label { font-size: 11px; color: var(--ink-3); letter-spacing: 0.05em; }
 
 .mode-pill {
   display: flex;
@@ -124,14 +111,9 @@ body {
   border-radius: 30px;
   cursor: pointer;
   transition: all 0.25s;
-  box-shadow: 0 1px 8px var(--cacao-dim);
 }
 
-.mode-pill:hover {
-  background: var(--cacao);
-  border-color: var(--cacao);
-  color: #F5EDE4;
-}
+.mode-pill:hover { background: var(--cacao); border-color: var(--cacao); color: #F5EDE4; }
 
 .mode-dot {
   width: 6px; height: 6px;
@@ -146,7 +128,6 @@ body {
   50% { opacity: 1; transform: scale(1.3); }
 }
 
-/* ── MAIN ── */
 .main {
   flex: 1;
   padding: 28px;
@@ -158,7 +139,6 @@ body {
   gap: 16px;
 }
 
-/* ── DCA ── */
 .dca-block {
   padding: 36px 36px 32px;
   background: var(--cacao);
@@ -196,7 +176,6 @@ body {
   max-width: 680px;
 }
 
-/* ── OUTCOMES ── */
 .outcomes-row {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -212,11 +191,7 @@ body {
   border-radius: 4px;
 }
 
-.outcome-tile:hover {
-  border-color: var(--cacao-3);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px var(--cacao-dim);
-}
+.outcome-tile:hover { border-color: var(--cacao-3); transform: translateY(-2px); box-shadow: 0 6px 20px var(--cacao-dim); }
 
 .outcome-num {
   font-family: var(--font-display);
@@ -227,51 +202,17 @@ body {
   margin-bottom: 4px;
 }
 
-.outcome-name {
-  font-size: 9px;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-  font-weight: 600;
-  margin-bottom: 12px;
-}
+.outcome-name { font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ink-3); font-weight: 600; margin-bottom: 12px; }
 
-.outcome-bar {
-  height: 2px;
-  background: var(--bg-3);
-  border-radius: 1px;
-  overflow: hidden;
-  margin-bottom: 10px;
-}
+.outcome-bar { height: 2px; background: var(--bg-3); border-radius: 1px; overflow: hidden; margin-bottom: 10px; }
 
-.outcome-bar-fill {
-  height: 100%;
-  background: linear-gradient(90deg, var(--cacao), var(--sand));
-  border-radius: 1px;
-}
+.outcome-bar-fill { height: 100%; background: linear-gradient(90deg, var(--cacao), var(--sand)); border-radius: 1px; }
 
-.outcome-q {
-  font-size: 11px;
-  color: var(--ink-4);
-  font-family: var(--font-display);
-  font-style: italic;
-  line-height: 1.4;
-}
+.outcome-q { font-size: 11px; color: var(--ink-4); font-family: var(--font-display); font-style: italic; line-height: 1.4; }
 
-/* ── GRID ── */
-.grid-2 {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-}
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 
-/* ── PANEL ── */
-.panel {
-  background: var(--white);
-  border: 1px solid var(--border);
-  padding: 22px 22px 20px;
-  border-radius: 4px;
-}
+.panel { background: var(--white); border: 1px solid var(--border); padding: 22px 22px 20px; border-radius: 4px; }
 
 .section-label {
   font-size: 9px;
@@ -285,52 +226,13 @@ body {
   margin-bottom: 14px;
 }
 
-.signal-text {
-  font-family: var(--font-display);
-  font-size: 17px;
-  font-weight: 400;
-  font-style: italic;
-  color: var(--ink);
-  line-height: 1.55;
-  margin-bottom: 10px;
-}
+.signal-text { font-family: var(--font-display); font-size: 17px; font-weight: 400; font-style: italic; color: var(--ink); line-height: 1.55; margin-bottom: 10px; }
+.signal-sub { font-size: 12px; color: var(--ink-2); line-height: 1.8; }
 
-.signal-sub {
-  font-size: 12px;
-  color: var(--ink-2);
-  line-height: 1.8;
-}
+.constraint-panel { background: var(--white); border: 1px solid var(--border); border-left: 3px solid var(--sage); padding: 22px 22px 20px; border-radius: 0 4px 4px 0; }
+.constraint-text { font-family: var(--font-display); font-size: 15px; font-style: italic; color: var(--ink); line-height: 1.6; margin-bottom: 14px; }
 
-.constraint-panel {
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-left: 3px solid var(--sage);
-  padding: 22px 22px 20px;
-  border-radius: 0 4px 4px 0;
-}
-
-.constraint-text {
-  font-family: var(--font-display);
-  font-size: 15px;
-  font-style: italic;
-  color: var(--ink);
-  line-height: 1.6;
-  margin-bottom: 14px;
-}
-
-/* ── TAGS ── */
-.tag {
-  font-size: 9px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 3px 10px;
-  display: inline-block;
-  margin-right: 4px;
-  margin-bottom: 4px;
-  font-weight: 600;
-  border-radius: 20px;
-}
-
+.tag { font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 10px; display: inline-block; margin-right: 4px; margin-bottom: 4px; font-weight: 600; border-radius: 20px; }
 .tag-cacao { color: var(--cacao-2); background: var(--cacao-dim); border: 1px solid var(--cacao-mid); }
 .tag-sage { color: var(--sage); background: var(--sage-dim); border: 1px solid rgba(138,158,130,0.3); }
 .tag-sand { color: var(--cacao-3); background: var(--sand-dim); border: 1px solid rgba(196,168,130,0.3); }
@@ -351,12 +253,7 @@ body {
   border-radius: 4px;
 }
 
-.loop-item:hover {
-  background: var(--bg-2);
-  border-color: var(--cacao-mid);
-  transform: translateX(3px);
-}
-
+.loop-item:hover { background: var(--bg-2); border-color: var(--cacao-mid); transform: translateX(3px); }
 .loop-item.done { opacity: 0.35; }
 .loop-item.done .loop-name { text-decoration: line-through; }
 
@@ -377,12 +274,66 @@ body {
 .loop-name { flex: 1; font-size: 13px; color: var(--ink); font-weight: 500; }
 .loop-tag { font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-4); }
 
-/* ── MISSION CARDS ── */
-.mission-cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
+/* ── ADD LOOP FORM ── */
+.add-loop-form {
+  display: none;
+  gap: 8px;
+  margin-top: 10px;
+  flex-direction: column;
 }
+
+.add-loop-form.visible { display: flex; }
+
+.add-loop-form input, .add-loop-form select {
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--ink);
+  background: var(--bg);
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.add-loop-form input:focus, .add-loop-form select:focus { border-color: var(--cacao); }
+
+.form-row { display: flex; gap: 8px; }
+
+.btn-save {
+  padding: 9px 20px;
+  background: var(--cacao);
+  color: #F5EDE4;
+  border: none;
+  border-radius: 4px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s;
+  flex: 1;
+}
+
+.btn-save:hover { background: var(--cacao-2); }
+
+.btn-cancel {
+  padding: 9px 16px;
+  background: transparent;
+  color: var(--ink-3);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-cancel:hover { border-color: var(--cacao-mid); color: var(--ink-2); }
+
+/* ── MISSIONS ── */
+.mission-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
 
 .mission-card {
   background: var(--white);
@@ -395,114 +346,58 @@ body {
   border-radius: 4px;
 }
 
-.mission-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-}
-
+.mission-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
 .mission-card.card-cacao::before { background: linear-gradient(90deg, var(--cacao), var(--cacao-3)); }
 .mission-card.card-sage::before { background: linear-gradient(90deg, var(--sage), #6A8A62); }
 .mission-card.card-sand::before { background: linear-gradient(90deg, var(--sand), #A88860); }
 
-.mission-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 28px var(--cacao-dim);
-  border-color: var(--cacao-mid);
-}
+.mission-card:hover { transform: translateY(-3px); box-shadow: 0 10px 28px var(--cacao-dim); border-color: var(--cacao-mid); }
 
-.mission-card-num {
-  font-size: 9px;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: var(--ink-4);
-  font-weight: 600;
-  margin-bottom: 10px;
-}
+.mission-card-num { font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-4); font-weight: 600; margin-bottom: 10px; }
+.mission-card-name { font-family: var(--font-display); font-size: 21px; font-weight: 600; color: var(--ink); margin-bottom: 10px; line-height: 1.2; }
+.mission-card-dca { font-family: var(--font-display); font-size: 13px; font-style: italic; color: var(--ink-2); line-height: 1.7; margin-bottom: 16px; }
+.mission-card-outcomes { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 16px; }
+.mission-card-footer { display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--border); padding-top: 12px; font-size: 11px; color: var(--ink-3); }
 
-.mission-card-name {
-  font-family: var(--font-display);
-  font-size: 21px;
-  font-weight: 600;
-  color: var(--ink);
-  margin-bottom: 10px;
-  line-height: 1.2;
-}
-
-.mission-card-dca {
-  font-family: var(--font-display);
-  font-size: 13px;
-  font-style: italic;
-  color: var(--ink-2);
-  line-height: 1.7;
-  margin-bottom: 16px;
-}
-
-.mission-card-outcomes {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px;
-  margin-bottom: 16px;
-}
-
-.mission-card-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-top: 1px solid var(--border);
-  padding-top: 12px;
-  font-size: 11px;
-  color: var(--ink-3);
-}
-
-.m-status {
-  font-size: 9px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 3px 10px;
-  border-radius: 20px;
-  font-weight: 600;
-  border: 1px solid;
-  white-space: nowrap;
-}
-
+.m-status { font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 10px; border-radius: 20px; font-weight: 600; border: 1px solid; white-space: nowrap; }
 .m-active { color: var(--sage); border-color: rgba(138,158,130,0.4); background: var(--sage-dim); }
 .m-waiting { color: var(--cacao-3); border-color: var(--cacao-mid); background: var(--cacao-dim); }
 
 /* ── DECISIONS ── */
-.decision-row {
-  padding: 14px 0;
-  border-bottom: 1px solid var(--border-2);
-}
-
+.decision-row { padding: 14px 0; border-bottom: 1px solid var(--border-2); }
 .decision-row:last-child { border-bottom: none; padding-bottom: 0; }
+.decision-text { font-family: var(--font-display); font-size: 14px; font-style: italic; color: var(--ink); line-height: 1.7; margin-bottom: 6px; }
+.decision-meta { display: flex; gap: 12px; font-size: 10px; color: var(--ink-4); letter-spacing: 0.05em; align-items: center; flex-wrap: wrap; }
+.conf-dot { width: 5px; height: 5px; border-radius: 50%; display: inline-block; margin-right: 4px; vertical-align: middle; }
 
-.decision-text {
+/* ── ADD DECISION FORM ── */
+.add-decision-form { display: none; flex-direction: column; gap: 8px; margin-top: 10px; }
+.add-decision-form.visible { display: flex; }
+.add-decision-form textarea {
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
   font-family: var(--font-display);
-  font-size: 14px;
+  font-size: 13px;
   font-style: italic;
   color: var(--ink);
-  line-height: 1.7;
-  margin-bottom: 6px;
+  background: var(--bg);
+  outline: none;
+  resize: none;
+  height: 80px;
+  line-height: 1.6;
+  transition: border-color 0.2s;
 }
-
-.decision-meta {
-  display: flex;
-  gap: 12px;
-  font-size: 10px;
-  color: var(--ink-4);
-  letter-spacing: 0.05em;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-.conf-dot {
-  width: 5px; height: 5px;
-  border-radius: 50%;
-  display: inline-block;
-  margin-right: 4px;
-  vertical-align: middle;
+.add-decision-form textarea:focus { border-color: var(--cacao); }
+.add-decision-form select {
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--ink);
+  background: var(--bg);
+  outline: none;
 }
 
 /* ── ADD BTN ── */
@@ -518,25 +413,34 @@ body {
   border-radius: 50%;
   line-height: 1;
 }
-
 .add-btn:hover { border-color: var(--cacao); color: var(--cacao); background: var(--cacao-dim); }
 
-/* ── ALL MISSIONS ── */
-.all-missions {
-  text-align: center;
-  padding: 14px;
-  font-size: 10px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-  cursor: pointer;
-  transition: all 0.2s;
-  border: 1px dashed var(--border);
-  border-radius: 4px;
-  font-weight: 600;
+.all-missions { text-align: center; padding: 14px; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-3); cursor: pointer; transition: all 0.2s; border: 1px dashed var(--border); border-radius: 4px; font-weight: 600; }
+.all-missions:hover { color: var(--cacao); border-color: var(--cacao-mid); background: var(--cacao-dim); }
+
+/* ── LOADING ── */
+.loading { text-align: center; padding: 20px; color: var(--ink-3); font-size: 12px; font-style: italic; font-family: var(--font-display); }
+
+/* ── TOAST ── */
+.toast {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--cacao);
+  color: #F5EDE4;
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  opacity: 0;
+  transition: all 0.3s;
+  z-index: 200;
+  white-space: nowrap;
 }
 
-.all-missions:hover { color: var(--cacao); border-color: var(--cacao-mid); background: var(--cacao-dim); }
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
 /* ── BOTTOM NAV ── */
 .bottom-nav {
@@ -551,40 +455,14 @@ body {
   z-index: 100;
 }
 
-.nav-item {
-  padding: 16px 12px;
-  font-size: 10px;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--ink-4);
-  cursor: pointer;
-  transition: color 0.15s;
-  border-bottom: 2px solid transparent;
-  font-weight: 600;
-}
-
+.nav-item { padding: 16px 12px; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-4); cursor: pointer; transition: color 0.15s; border-bottom: 2px solid transparent; font-weight: 600; }
 .nav-item:hover { color: var(--ink-2); }
 .nav-item.active { color: var(--cacao); border-bottom-color: var(--cacao); }
 .nav-spacer { flex: 1; }
 
-.review-btn {
-  font-size: 9px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--cacao-2);
-  background: var(--cacao-dim);
-  border: 1px solid var(--cacao-mid);
-  padding: 7px 16px;
-  cursor: pointer;
-  font-family: var(--font-body);
-  border-radius: 30px;
-  transition: all 0.2s;
-  font-weight: 600;
-}
-
+.review-btn { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cacao-2); background: var(--cacao-dim); border: 1px solid var(--cacao-mid); padding: 7px 16px; cursor: pointer; font-family: var(--font-body); border-radius: 30px; transition: all 0.2s; font-weight: 600; }
 .review-btn:hover { background: var(--cacao); color: #F5EDE4; border-color: var(--cacao); }
 
-/* ── RESPONSIVE ── */
 @media (max-width: 680px) {
   .outcomes-row { grid-template-columns: repeat(2, 1fr); }
   .grid-2 { grid-template-columns: 1fr; }
@@ -606,6 +484,8 @@ body {
 </style>
 </head>
 <body>
+
+<div class="toast" id="toast"></div>
 
 <div class="principle-bar">
   <span class="principle-label">How I operate</span>
@@ -668,61 +548,64 @@ body {
     </div>
   </div>
 
+  <!-- LOOPS -->
   <div class="grid-2">
     <div class="panel">
       <div class="section-label">
         Close today
-        <button class="add-btn">+</button>
+        <button class="add-btn" onclick="toggleAddLoop()">+</button>
       </div>
-      <div class="loop-list">
-        <div class="loop-item" onclick="toggleLoop(this)">
-          <div class="loop-check">✓</div>
-          <span class="loop-name">Fix spray tan machine</span>
-          <span class="loop-tag">Business</span>
-        </div>
-        <div class="loop-item" onclick="toggleLoop(this)">
-          <div class="loop-check">✓</div>
-          <span class="loop-name">File tuka Hine — change of trustee</span>
-          <span class="loop-tag">Governance</span>
+      <div class="loop-list" id="loop-list">
+        <div class="loading">Loading loops...</div>
+      </div>
+      <div class="add-loop-form" id="add-loop-form">
+        <input type="text" id="loop-name-input" placeholder="What needs closing today?" />
+        <div class="form-row">
+          <select id="loop-tag-input">
+            <option value="Business">Business</option>
+            <option value="Governance">Governance</option>
+            <option value="Wealth">Wealth</option>
+            <option value="Whānau">Whānau</option>
+            <option value="Health">Health</option>
+            <option value="Learning">Learning</option>
+            <option value="Legal">Legal</option>
+          </select>
+          <button class="btn-save" onclick="saveLoop()">Done</button>
+          <button class="btn-cancel" onclick="toggleAddLoop()">✕</button>
         </div>
       </div>
     </div>
 
+    <!-- DECISIONS -->
     <div class="panel">
       <div class="section-label">
         What I know to be true
-        <button class="add-btn">+</button>
+        <button class="add-btn" onclick="toggleAddDecision()">+</button>
       </div>
-      <div>
-        <div class="decision-row">
-          <div class="decision-text">ŪKAIPŌ is the mission. Not the aim. The aim is bigger — it outlasts any single project.</div>
-          <div class="decision-meta">
-            <span>Today</span>
-            <span><span class="conf-dot" style="background:#8A9E82"></span>Certain</span>
-          </div>
-        </div>
-        <div class="decision-row">
-          <div class="decision-text">I don't build from interest. I build because something needs solving and I'm the one who sees it.</div>
-          <div class="decision-meta">
-            <span>This week</span>
-            <span><span class="conf-dot" style="background:#C4A882"></span>This is the pattern</span>
-          </div>
-        </div>
-        <div class="decision-row">
-          <div class="decision-text">Stop opening new things until the open ones are closed. That's not discipline — that's just sense.</div>
-          <div class="decision-meta">
-            <span>Today</span>
-            <span><span class="conf-dot" style="background:#5C3D2E"></span>Non-negotiable</span>
-          </div>
+      <div id="decision-list">
+        <div class="loading">Loading decisions...</div>
+      </div>
+      <div class="add-decision-form" id="add-decision-form">
+        <textarea id="decision-text-input" placeholder="What do you know to be true right now?"></textarea>
+        <div class="form-row">
+          <select id="decision-conf-input">
+            <option value="Certain">Certain</option>
+            <option value="This is the pattern">This is the pattern</option>
+            <option value="Non-negotiable">Non-negotiable</option>
+            <option value="Committed">Committed</option>
+            <option value="Still figuring out">Still figuring out</option>
+          </select>
+          <button class="btn-save" onclick="saveDecision()">Done</button>
+          <button class="btn-cancel" onclick="toggleAddDecision()">✕</button>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- MISSIONS -->
   <div>
     <div class="section-label" style="margin-bottom:14px">Where the energy goes — 3 of 8</div>
     <div class="mission-cards">
-
       <div class="mission-card card-cacao">
         <div class="mission-card-num">Mission 01</div>
         <div class="mission-card-name">Personal OS</div>
@@ -738,7 +621,6 @@ body {
           <span class="m-status m-active">Active</span>
         </div>
       </div>
-
       <div class="mission-card card-sage">
         <div class="mission-card-num">Mission 02</div>
         <div class="mission-card-name">Governance</div>
@@ -753,7 +635,6 @@ body {
           <span class="m-status m-active">Active</span>
         </div>
       </div>
-
       <div class="mission-card card-sand">
         <div class="mission-card-num">Mission 03</div>
         <div class="mission-card-name">Rauwhenua · Ūkaipō</div>
@@ -769,7 +650,6 @@ body {
           <span class="m-status m-active">Active</span>
         </div>
       </div>
-
     </div>
   </div>
 
@@ -788,31 +668,144 @@ body {
 </nav>
 
 <script>
-  const d = new Date();
-  const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-  const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-  document.getElementById('date-label').textContent = `${days[d.getDay()]}, ${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()}`;
+// ── SUPABASE INIT ──
+const { createClient } = supabase;
+const sb = createClient(
+  'https://kbfioznddfkwkoulebqg.supabase.co',
+  'sb_publishable_uWCrWVaNGEBUysynxujlxQ_xvEmwAkG'
+);
 
-  const modes = [
-    { label: 'Mode 1 — Capacity', color: '#8A9E82' },
-    { label: 'Mode 1½ — Visibility', color: '#C4A882' },
-    { label: 'Mode 2 — Execution', color: '#5C3D2E' }
-  ];
-  let modeIdx = 0;
-  function cycleMode() {
-    modeIdx = (modeIdx + 1) % modes.length;
-    document.getElementById('mode-label').textContent = modes[modeIdx].label;
-    document.querySelector('.mode-dot').style.background = modes[modeIdx].color;
+// ── DATE ──
+const d = new Date();
+const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+document.getElementById('date-label').textContent = `${days[d.getDay()]}, ${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()}`;
+
+// ── MODE ──
+const modes = [
+  { label: 'Mode 1 — Capacity', color: '#8A9E82' },
+  { label: 'Mode 1½ — Visibility', color: '#C4A882' },
+  { label: 'Mode 2 — Execution', color: '#5C3D2E' }
+];
+let modeIdx = 0;
+function cycleMode() {
+  modeIdx = (modeIdx + 1) % modes.length;
+  document.getElementById('mode-label').textContent = modes[modeIdx].label;
+  document.querySelector('.mode-dot').style.background = modes[modeIdx].color;
+}
+
+// ── TOAST ──
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+// ── LOOPS ──
+async function loadLoops() {
+  const { data, error } = await sb.from('loops').select('*').order('created_at', { ascending: false });
+  const list = document.getElementById('loop-list');
+  if (error || !data.length) {
+    list.innerHTML = '<div class="loading">No loops yet — tap + to add one</div>';
+    return;
   }
+  list.innerHTML = data.map(loop => `
+    <div class="loop-item ${loop.done ? 'done' : ''}" onclick="toggleLoop('${loop.id}', ${loop.done}, this)">
+      <div class="loop-check">✓</div>
+      <span class="loop-name">${loop.name}</span>
+      <span class="loop-tag">${loop.tag || ''}</span>
+    </div>
+  `).join('');
+}
 
-  function toggleLoop(item) { item.classList.toggle('done'); }
+async function toggleLoop(id, currentDone, el) {
+  const newDone = !currentDone;
+  el.classList.toggle('done', newDone);
+  el.onclick = () => toggleLoop(id, newDone, el);
+  await sb.from('loops').update({ done: newDone }).eq('id', id);
+  showToast(newDone ? 'Loop closed ✓' : 'Loop reopened');
+}
 
-  document.querySelectorAll('.nav-item').forEach(item => {
-    item.addEventListener('click', function() {
-      document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
-      this.classList.add('active');
-    });
+function toggleAddLoop() {
+  document.getElementById('add-loop-form').classList.toggle('visible');
+  document.getElementById('loop-name-input').focus();
+}
+
+async function saveLoop() {
+  const name = document.getElementById('loop-name-input').value.trim();
+  const tag = document.getElementById('loop-tag-input').value;
+  if (!name) return;
+  const { error } = await sb.from('loops').insert({ name, tag, done: false });
+  if (!error) {
+    document.getElementById('loop-name-input').value = '';
+    toggleAddLoop();
+    loadLoops();
+    showToast('Loop added');
+  }
+}
+
+// ── DECISIONS ──
+const confColors = {
+  'Certain': '#8A9E82',
+  'This is the pattern': '#C4A882',
+  'Non-negotiable': '#5C3D2E',
+  'Committed': '#9B6E5A',
+  'Still figuring out': '#C4A898'
+};
+
+async function loadDecisions() {
+  const { data, error } = await sb.from('decisions').select('*').order('created_at', { ascending: false }).limit(5);
+  const list = document.getElementById('decision-list');
+  if (error || !data.length) {
+    list.innerHTML = '<div class="loading">Nothing logged yet — tap + to add</div>';
+    return;
+  }
+  list.innerHTML = data.map(dec => {
+    const date = new Date(dec.created_at);
+    const dateStr = `${date.getDate()} ${months[date.getMonth()]}`;
+    const color = confColors[dec.confidence] || '#C4A898';
+    return `
+      <div class="decision-row">
+        <div class="decision-text">${dec.text}</div>
+        <div class="decision-meta">
+          <span>${dateStr}</span>
+          <span><span class="conf-dot" style="background:${color}"></span>${dec.confidence || ''}</span>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function toggleAddDecision() {
+  document.getElementById('add-decision-form').classList.toggle('visible');
+  document.getElementById('decision-text-input').focus();
+}
+
+async function saveDecision() {
+  const text = document.getElementById('decision-text-input').value.trim();
+  const confidence = document.getElementById('decision-conf-input').value;
+  if (!text) return;
+  const { error } = await sb.from('decisions').insert({ text, confidence });
+  if (!error) {
+    document.getElementById('decision-text-input').value = '';
+    toggleAddDecision();
+    loadDecisions();
+    showToast('Decision logged');
+  }
+}
+
+// ── NAV ──
+document.querySelectorAll('.nav-item').forEach(item => {
+  item.addEventListener('click', function() {
+    document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+    this.classList.add('active');
   });
+});
+
+// ── INIT ──
+loadLoops();
+loadDecisions();
 </script>
 </body>
 </html>
