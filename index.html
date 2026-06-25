@@ -434,34 +434,43 @@ body { background: var(--bg); color: var(--ink); font-family: var(--font-body); 
 // SUPABASE — direct REST API (no library needed)
 const SB_URL = 'https://kbfioznddfkwkoulebqg.supabase.co';
 const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtiZmlvem5kZGZrd2tvdWxlYnFnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIzMjE4MzgsImV4cCI6MjA5Nzg5NzgzOH0.6EbnbEiejmfoDCIjze9mlmr4QWX-u9_1T4nUP1enGWM';
-const H = { 'apikey': SB_KEY, 'Authorization': 'Bearer ' + SB_KEY, 'Content-Type': 'application/json', 'Prefer': 'return=representation' };
+// Separate headers for GET vs POST/PATCH
+const H_GET = { 'apikey': SB_KEY, 'Authorization': 'Bearer ' + SB_KEY };
+const H_POST = { 'apikey': SB_KEY, 'Authorization': 'Bearer ' + SB_KEY, 'Content-Type': 'application/json', 'Prefer': 'return=representation' };
 
 async function dbSelect(table, opts={}) {
-  let url = `${SB_URL}/rest/v1/${table}?select=*`;
-  if(opts.order) url += `&order=${opts.order}.${opts.asc?'asc':'desc'}`;
-  if(opts.limit) url += `&limit=${opts.limit}`;
-  if(opts.eq) url += `&${opts.eq[0]}=eq.${opts.eq[1]}`;
+  let url = SB_URL + '/rest/v1/' + table + '?select=*';
+  if(opts.order) url += '&order=' + opts.order + '.' + (opts.asc ? 'asc' : 'desc');
+  if(opts.limit) url += '&limit=' + opts.limit;
+  if(opts.eq) url += '&' + opts.eq[0] + '=eq.' + opts.eq[1];
   try {
-    const r = await fetch(url, {headers: H});
+    const r = await fetch(url, {method:'GET', headers: H_GET});
+    if(!r.ok) {
+      const txt = await r.text();
+      return {data:null, error:{message: 'HTTP ' + r.status + ': ' + txt.slice(0,100), code: r.status}};
+    }
     const data = await r.json();
-    if(!r.ok) return {data:null, error:{message: data.message||'Error '+r.status, code: r.status}};
     return {data, error:null};
   } catch(e) { return {data:null, error:{message:e.message}}; }
 }
 
 async function dbInsert(table, body) {
   try {
-    const r = await fetch(`${SB_URL}/rest/v1/${table}`, {method:'POST', headers:H, body:JSON.stringify(Array.isArray(body)?body:[body])});
+    const arr = Array.isArray(body) ? body : [body];
+    const r = await fetch(SB_URL + '/rest/v1/' + table, {method:'POST', headers:H_POST, body:JSON.stringify(arr)});
+    if(!r.ok) {
+      const txt = await r.text();
+      return {data:null, error:{message: 'HTTP ' + r.status + ': ' + txt.slice(0,100)}};
+    }
     const data = await r.json();
-    if(!r.ok) return {data:null, error:{message: data.message||'Error '+r.status}};
-    return {data: Array.isArray(data)?data:[data], error:null};
+    return {data: Array.isArray(data) ? data : [data], error:null};
   } catch(e) { return {data:null, error:{message:e.message}}; }
 }
 
 async function dbUpdate(table, body, col, val) {
   try {
-    const r = await fetch(`${SB_URL}/rest/v1/${table}?${col}=eq.${val}`, {method:'PATCH', headers:H, body:JSON.stringify(body)});
-    if(!r.ok) { const d=await r.json(); return {data:null, error:{message:d.message||'Error'}}; }
+    const r = await fetch(SB_URL + '/rest/v1/' + table + '?' + col + '=eq.' + val, {method:'PATCH', headers:H_POST, body:JSON.stringify(body)});
+    if(!r.ok) { const txt = await r.text(); return {data:null, error:{message:'HTTP ' + r.status + ': ' + txt.slice(0,80)}}; }
     return {data:null, error:null};
   } catch(e) { return {data:null, error:{message:e.message}}; }
 }
@@ -800,7 +809,7 @@ GOVERNANCE ENTITIES: Kaitangata 5E (Active — trustee filing), Parikino Marae (
 CURRENT OPEN LOOPS: ${coachCtx.openLoops?.join(', ')||'none'}
 RECENT DECISIONS: ${coachCtx.recentDecs?.join(' | ')||'none'}
 
-COACHING STYLE: Direct, warm, certain. No fluff. One powerful question at a time. Reference their actual data. Think with them not for them. Short responses unless depth is needed. Their flow state: "I just do, don't think, then done." When stuck: find the constraint. When scattered: find the loop to close first.`;
+COACHING STYLE: Direct, warm, certain. No fluff. One powerful question at a time. Reference their actual data. Think with them not for them. Short responses unless depth is needed. Their flow state: "I just do, dont think, then done." When stuck: find the constraint. When scattered: find the loop to close first.`;
 }
 
 async function startCoach(type) {
@@ -811,8 +820,8 @@ async function startCoach(type) {
   coachHistory=[];
   const prompts={
     briefing:'Give me my daily briefing based on everything you know about my system right now.',
-    think:'I need to think something through. Ask me what's on my mind.',
-    challenge:'Challenge my thinking today. Look at what I have open and what I've been deciding — what question should I be asking myself that I'm not?'
+    think:'I need to think something through. Ask me whats on my mind.',
+    challenge:'Challenge my thinking today. Look at what I have open and what Ive been deciding — what question should I be asking myself that Im not?'
   };
   await sendToCoach(prompts[type]);
 }
@@ -906,8 +915,8 @@ async function init() {
       if(!names.includes('fix spray tan machine')) {
         toSeed.push({name:'Fix spray tan machine',tag:'Business',done:false,steps:JSON.stringify([
           {id:'1',name:'Drop off machine for assessment',status:'done'},
-          {id:'2',name:"Get ball bearings from McDonald's",status:'active'},
-          {id:'3',name:'Drop off at Men's Shed',status:'todo'},
+          {id:'2',name:"Get ball bearings from McDonalds",status:'active'},
+          {id:'3',name:'Drop off at Mens Shed',status:'todo'},
           {id:'4',name:'Wait — can they fix it?',status:'todo'},
           {id:'5',name:'Collect when done',status:'todo'}
         ])});
