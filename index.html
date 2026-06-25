@@ -6,7 +6,7 @@
 <title>Manifest Smarter</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
@@ -431,12 +431,40 @@ body { background: var(--bg); color: var(--ink); font-family: var(--font-body); 
 </div>
 
 <script>
-// SUPABASE
-const { createClient } = supabase;
-const sb = createClient(
-  'https://kbfioznddfkwkoulebqg.supabase.co',
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtiZmlvem5kZGZrd2tvdWxlYnFnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIzMjE4MzgsImV4cCI6MjA5Nzg5NzgzOH0.6EbnbEiejmfoDCIjze9mlmr4QWX-u9_1T4nUP1enGWM'
-);
+// SUPABASE — direct REST API (no library needed)
+const SB_URL = 'https://kbfioznddfkwkoulebqg.supabase.co';
+const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtiZmlvem5kZGZrd2tvdWxlYnFnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIzMjE4MzgsImV4cCI6MjA5Nzg5NzgzOH0.6EbnbEiejmfoDCIjze9mlmr4QWX-u9_1T4nUP1enGWM';
+const H = { 'apikey': SB_KEY, 'Authorization': 'Bearer ' + SB_KEY, 'Content-Type': 'application/json', 'Prefer': 'return=representation' };
+
+async function dbSelect(table, opts={}) {
+  let url = `${SB_URL}/rest/v1/${table}?select=*`;
+  if(opts.order) url += `&order=${opts.order}.${opts.asc?'asc':'desc'}`;
+  if(opts.limit) url += `&limit=${opts.limit}`;
+  if(opts.eq) url += `&${opts.eq[0]}=eq.${opts.eq[1]}`;
+  try {
+    const r = await fetch(url, {headers: H});
+    const data = await r.json();
+    if(!r.ok) return {data:null, error:{message: data.message||'Error '+r.status, code: r.status}};
+    return {data, error:null};
+  } catch(e) { return {data:null, error:{message:e.message}}; }
+}
+
+async function dbInsert(table, body) {
+  try {
+    const r = await fetch(`${SB_URL}/rest/v1/${table}`, {method:'POST', headers:H, body:JSON.stringify(Array.isArray(body)?body:[body])});
+    const data = await r.json();
+    if(!r.ok) return {data:null, error:{message: data.message||'Error '+r.status}};
+    return {data: Array.isArray(data)?data:[data], error:null};
+  } catch(e) { return {data:null, error:{message:e.message}}; }
+}
+
+async function dbUpdate(table, body, col, val) {
+  try {
+    const r = await fetch(`${SB_URL}/rest/v1/${table}?${col}=eq.${val}`, {method:'PATCH', headers:H, body:JSON.stringify(body)});
+    if(!r.ok) { const d=await r.json(); return {data:null, error:{message:d.message||'Error'}}; }
+    return {data:null, error:null};
+  } catch(e) { return {data:null, error:{message:e.message}}; }
+}
 
 // DATE
 const D = new Date();
@@ -544,7 +572,7 @@ async function addStep(loopId) {
   if(!loop) return;
   const steps = parseSteps(loop);
   steps.push({id:Date.now().toString(),name,status:statusEl.value});
-  await sb.from('loops').update({steps:JSON.stringify(steps)}).eq('id',loopId);
+  await dbUpdate('loops', {steps:JSON.stringify(steps)}, 'id', loopId);
   loop.steps = steps;
   nameEl.value='';
   refreshLoopEl(loop);
@@ -558,7 +586,7 @@ async function cycleStep(loopId, idx) {
   const steps = parseSteps(loop);
   const order = ['todo','active','waiting','done'];
   steps[idx].status = order[(order.indexOf(steps[idx].status)+1)%order.length];
-  await sb.from('loops').update({steps:JSON.stringify(steps)}).eq('id',loopId);
+  await dbUpdate('loops', {steps:JSON.stringify(steps)}, 'id', loopId);
   loop.steps = steps;
   refreshLoopEl(loop);
   document.getElementById('sp-'+loopId).classList.add('open');
@@ -595,7 +623,7 @@ function filterLoops(type, btn) {
 
 async function toggleLoop(id, isDone) {
   const newDone = !isDone;
-  await sb.from('loops').update({done:newDone}).eq('id',id);
+  await dbUpdate('loops', {done:newDone}, 'id', id);
   const loop = loops.find(l=>l.id===id);
   if(loop) loop.done=newDone;
   renderDashLoops();
@@ -607,8 +635,8 @@ async function addLoop() {
   const name = document.getElementById('loop-name-d').value.trim();
   const tag = document.getElementById('loop-tag-d').value;
   if(!name) return;
-  const {data} = await sb.from('loops').insert({name,tag,done:false}).select();
-  if(data) loops.unshift(data[0]);
+  const {data: ld3} = await dbInsert('loops', {name,tag,done:false});
+  if(ld3) loops.unshift(ld3[0]);
   document.getElementById('loop-name-d').value='';
   toggleForm('loop-form-d');
   renderDashLoops();
@@ -619,7 +647,7 @@ async function addLoopFull() {
   const name = document.getElementById('loop-name-f').value.trim();
   const tag = document.getElementById('loop-tag-f').value;
   if(!name) return;
-  const {data} = await sb.from('loops').insert({name,tag,done:false}).select();
+  const {data} = await dbInsert('loops', {name,tag,done:false});
   if(data) loops.unshift(data[0]);
   document.getElementById('loop-name-f').value='';
   toggleForm('loop-form-f');
@@ -660,8 +688,8 @@ async function addDecision() {
   const text = document.getElementById('dec-text-d').value.trim();
   const confidence = document.getElementById('dec-conf-d').value;
   if(!text) return;
-  const {data} = await sb.from('decisions').insert({text,confidence}).select();
-  if(data) decisions.unshift(data[0]);
+  const {data: dd2} = await dbInsert('decisions', {text,confidence});
+  if(dd2) decisions.unshift(dd2[0]);
   document.getElementById('dec-text-d').value='';
   toggleForm('dec-form-d');
   renderDecsDash();
@@ -672,8 +700,8 @@ async function addDecisionFull() {
   const text = document.getElementById('dec-text-f').value.trim();
   const confidence = document.getElementById('dec-conf-f').value;
   if(!text) return;
-  const {data} = await sb.from('decisions').insert({text,confidence}).select();
-  if(data) decisions.unshift(data[0]);
+  const {data: dd3} = await dbInsert('decisions', {text,confidence});
+  if(dd3) decisions.unshift(dd3[0]);
   document.getElementById('dec-text-f').value='';
   toggleForm('dec-form-f');
   loadDecsFull();
@@ -741,7 +769,7 @@ async function showReviewSummary() {
 async function saveReview() {
   const labels=['Capability','Credibility','Stability','Autonomy','Constraint','Closed','Next week'];
   const text=rAnswers.map((a,i)=>a?`${labels[i]}: ${a}`:'').filter(Boolean).join(' | ');
-  if(text) { await sb.from('decisions').insert({text:`WEEKLY REVIEW: ${text}`,confidence:'Weekly Review'}); toast('Review saved'); }
+  if(text) { await dbInsert('decisions', {text:`WEEKLY REVIEW: ${text}`,confidence:'Weekly Review'}); toast('Review saved'); }
   showScreen('dashboard');
 }
 
@@ -846,7 +874,7 @@ async function init() {
   // Test connection first
   try {
     // Load loops
-    const {data: ld, error: le} = await sb.from('loops').select('*').order('created_at',{ascending:false});
+    const {data: ld, error: le} = await dbSelect('loops', {order:'created_at', asc:false});
     if(le) {
       showError('loop-list-d', `Supabase error loading loops:<br><strong>${le.message}</strong><br><small>Code: ${le.code || 'unknown'}</small>`);
     } else {
@@ -859,7 +887,7 @@ async function init() {
 
   try {
     // Load decisions
-    const {data: dd, error: de} = await sb.from('decisions').select('*').order('created_at',{ascending:false});
+    const {data: dd, error: de} = await dbSelect('decisions', {order:'created_at', asc:false});
     if(de) {
       showError('dec-list-d', `Supabase error loading decisions:<br><strong>${de.message}</strong><br><small>Code: ${de.code || 'unknown'}</small>`);
     } else {
@@ -895,11 +923,11 @@ async function init() {
         ])});
       }
       if(toSeed.length) {
-        const {data: sd, error: se} = await sb.from('loops').insert(toSeed).select();
+        const {data: sd, error: se} = await dbInsert('loops', toSeed);
         if(se) {
           // steps column might not exist yet - seed without steps
           const toSeedBasic = toSeed.map(({steps, ...rest}) => rest);
-          const {data: sd2} = await sb.from('loops').insert(toSeedBasic).select();
+          const {data: sd2} = await dbInsert('loops', toSeedBasic);
           if(sd2) { loops = [...sd2, ...loops]; renderDashLoops(); }
         } else if(sd) {
           loops = [...sd, ...loops];
