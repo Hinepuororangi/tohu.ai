@@ -611,12 +611,10 @@ async function loadLoopsDash() {
 
 function renderLoopsDash() {
   const list = document.getElementById('loop-list-dash');
+  if (!list) return;
   const open = allLoops.filter(l => !l.done);
   if (!open.length) { list.innerHTML = '<div class="loading">All clear — tap + to add a loop</div>'; return; }
-  list.innerHTML = open.map(l => `
-    <div class="loop-item ${l.done?'done':''}" data-id="${l.id}" data-done="${l.done}" onclick="toggleLoop(this,'dash')">
-      <div class="loop-check">✓</div><span class="loop-name">${l.name}</span><span class="loop-tag">${l.tag||''}</span>
-    </div>`).join('');
+  list.innerHTML = open.map(renderLoopWithSteps).join('');
 }
 
 async function loadLoopsFull() {
@@ -627,16 +625,12 @@ async function loadLoopsFull() {
 
 function renderLoopsFull() {
   const list = document.getElementById('loops-full-list');
+  if (!list) return;
   let filtered = allLoops;
   if (currentFilter === 'open') filtered = allLoops.filter(l => !l.done);
   if (currentFilter === 'done') filtered = allLoops.filter(l => l.done);
   if (!filtered.length) { list.innerHTML = '<div class="empty-state">Nothing here yet.</div>'; return; }
-  list.innerHTML = filtered.map(l => `
-    <div class="loop-full-item ${l.done?'done':''}" data-id="${l.id}" data-done="${l.done}" onclick="toggleLoop(this,'full')">
-      <div class="loop-check" style="border-color:${l.done?'var(--cacao)':'var(--ink-4)'};background:${l.done?'var(--cacao)':'transparent'};color:${l.done?'#F5EDE4':'transparent'}">✓</div>
-      <div style="flex:1"><div class="loop-name">${l.name}</div></div>
-      <span class="loop-tag">${l.tag||''}</span>
-    </div>`).join('');
+  list.innerHTML = filtered.map(renderLoopWithSteps).join('');
 }
 
 function filterLoops(type, btn) {
@@ -1138,11 +1132,32 @@ function resetCoach() {
 
 // ── INIT ──
 async function init() {
-  await seedRealProjects();
-  const {data} = await sb.from('loops').select('*').order('created_at',{ascending:false});
-  allLoops = data || [];
-  renderAllLoopLists();
-  loadDecisionsDash();
+  try {
+    // Load loops
+    const {data: loopData, error: loopErr} = await sb.from('loops').select('*').order('created_at',{ascending:false});
+    if (!loopErr) {
+      allLoops = loopData || [];
+    }
+    renderAllLoopLists();
+  } catch(e) {
+    document.getElementById('loop-list-dash').innerHTML = '<div class="loading">Tap + to add a loop</div>';
+  }
+  try {
+    await loadDecisionsDash();
+  } catch(e) {
+    document.getElementById('decision-list-dash').innerHTML = '<div class="loading">Tap + to add a decision</div>';
+  }
+  // Seed real projects in background (only if steps column exists)
+  try {
+    await seedRealProjects();
+    const {data: loopData2} = await sb.from('loops').select('*').order('created_at',{ascending:false});
+    if (loopData2) {
+      allLoops = loopData2;
+      renderAllLoopLists();
+    }
+  } catch(e) {
+    // Steps column may not exist yet - that's ok
+  }
 }
 init();
 </script>
