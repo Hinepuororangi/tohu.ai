@@ -189,6 +189,34 @@ body { background: var(--bg); color: var(--ink); font-family: var(--font-body); 
 .evidence-item-body { font-size: 13px; color: var(--ink-2); line-height: 1.7; margin-bottom: 8px; }
 .evidence-item-meta { font-size: 10px; color: var(--ink-4); }
 
+/* CAPABILITY */
+.method-flow { display: flex; flex-direction: column; }
+.method-step { display: flex; align-items: center; gap: 12px; padding: 8px 0; }
+.method-step-num { width: 24px; height: 24px; border-radius: 50%; background: var(--lego-orange); color: #fff; font-size: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.method-step-label { font-family: var(--font-display); font-size: 14px; font-weight: 600; color: var(--ink); }
+.method-step-desc { font-size: 11px; color: var(--ink-3); margin-top: 1px; }
+.method-step-arrow { text-align: center; color: var(--ink-4); font-size: 12px; padding-left: 12px; line-height: 1; }
+.track-card { background: var(--white); border: 1px solid var(--border); border-left: 3px solid var(--lego-orange); border-radius: 0 4px 4px 0; padding: 18px 20px; margin-bottom: 10px; cursor: pointer; transition: border-color .2s; }
+.track-card:hover { border-color: var(--cacao-mid); border-left-color: var(--lego-orange); }
+.track-name { font-family: var(--font-display); font-size: 16px; font-weight: 600; color: var(--ink); margin-bottom: 6px; }
+.track-hyp { font-size: 12px; color: var(--ink-2); line-height: 1.6; font-style: italic; font-family: var(--font-display); margin-bottom: 8px; }
+.pattern-card { background: var(--white); border: 1px solid var(--border); border-radius: 4px; padding: 16px 18px; margin-bottom: 10px; }
+.pattern-name { font-family: var(--font-display); font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 3px; }
+.pattern-frame { font-size: 13px; color: var(--lego-blue-2); font-weight: 600; margin-bottom: 8px; }
+.pattern-meta-row { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 8px; }
+.pattern-stat { font-size: 10px; color: var(--ink-3); }
+.pattern-stat b { color: var(--ink-2); }
+.stage-badge { font-size: 9px; letter-spacing: .08em; text-transform: uppercase; padding: 3px 9px; border-radius: 20px; font-weight: 600; white-space: nowrap; }
+.stage-recognise { color: var(--ink-3); background: var(--bg-2); }
+.stage-recall { color: var(--cacao-3); background: var(--sand-dim); }
+.stage-produce { color: var(--lego-blue-2); background: var(--lego-blue-dim); }
+.stage-transfer { color: var(--lego-orange-2); background: var(--lego-orange-dim); }
+.stage-automate { color: var(--sage); background: var(--sage-dim); }
+.stage-pressure { color: #fff; background: var(--lego-red); }
+.checklist-row { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--border-2); font-size: 12px; color: var(--ink-2); }
+.checklist-row:last-child { border-bottom: none; }
+.checklist-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--ink-4); flex-shrink: 0; }
+
 /* WEEKLY REVIEW */
 .review-progress { display: flex; gap: 6px; margin-bottom: 24px; }
 .review-step { flex: 1; height: 3px; background: var(--bg-3); border-radius: 2px; transition: background .3s; }
@@ -317,6 +345,7 @@ body { background: var(--bg); color: var(--ink); font-family: var(--font-body); 
     <div class="nav-item" onclick="showScreen('loops')">Loops</div>
     <div class="nav-item" onclick="showScreen('decisions')">Decisions</div>
     <div class="nav-item" onclick="showScreen('coach')">Coach</div>
+    <div class="nav-item" onclick="showScreen('capability')">Capability</div>
     <div class="nav-spacer"></div>
     <button class="review-btn" onclick="showScreen('review')">Weekly Review</button>
   </nav>
@@ -346,6 +375,7 @@ body { background: var(--bg); color: var(--ink); font-family: var(--font-body); 
     <div class="nav-item" onclick="showScreen('loops')">Loops</div>
     <div class="nav-item" onclick="showScreen('decisions')">Decisions</div>
     <div class="nav-item" onclick="showScreen('coach')">Coach</div>
+    <div class="nav-item" onclick="showScreen('capability')">Capability</div>
     <div class="nav-spacer"></div>
     <button class="review-btn" onclick="showScreen('review')">Weekly Review</button>
   </nav>
@@ -374,6 +404,7 @@ body { background: var(--bg); color: var(--ink); font-family: var(--font-body); 
     <div class="nav-item active" onclick="showScreen('loops')">Loops</div>
     <div class="nav-item" onclick="showScreen('decisions')">Decisions</div>
     <div class="nav-item" onclick="showScreen('coach')">Coach</div>
+    <div class="nav-item" onclick="showScreen('capability')">Capability</div>
     <div class="nav-spacer"></div>
     <button class="review-btn" onclick="showScreen('review')">Weekly Review</button>
   </nav>
@@ -401,6 +432,7 @@ body { background: var(--bg); color: var(--ink); font-family: var(--font-body); 
     <div class="nav-item" onclick="showScreen('loops')">Loops</div>
     <div class="nav-item active" onclick="showScreen('decisions')">Decisions</div>
     <div class="nav-item" onclick="showScreen('coach')">Coach</div>
+    <div class="nav-item" onclick="showScreen('capability')">Capability</div>
     <div class="nav-spacer"></div>
     <button class="review-btn" onclick="showScreen('review')">Weekly Review</button>
   </nav>
@@ -432,6 +464,7 @@ body { background: var(--bg); color: var(--ink); font-family: var(--font-body); 
     <div class="nav-item" onclick="showScreen('loops')">Loops</div>
     <div class="nav-item" onclick="showScreen('decisions')">Decisions</div>
     <div class="nav-item active" onclick="showScreen('coach')">Coach</div>
+    <div class="nav-item" onclick="showScreen('capability')">Capability</div>
     <div class="nav-spacer"></div>
     <button class="review-btn" onclick="showScreen('review')">Weekly Review</button>
   </nav>
@@ -465,6 +498,125 @@ body { background: var(--bg); color: var(--ink); font-family: var(--font-body); 
     <div class="nav-item" onclick="showScreen('loops')">Loops</div>
     <div class="nav-item" onclick="showScreen('decisions')">Decisions</div>
     <div class="nav-item" onclick="showScreen('coach')">Coach</div>
+    <div class="nav-item" onclick="showScreen('capability')">Capability</div>
+    <div class="nav-spacer"></div>
+    <button class="review-btn" onclick="showScreen('review')">Weekly Review</button>
+  </nav>
+</div>
+
+<!-- CAPABILITY -->
+<div class="screen" id="screen-capability">
+  <div class="principle-bar"><span class="principle-label">Method of success</span><span class="principle-text">Knowledge is not capability until it becomes automatic, reusable and available under real-life pressure.</span></div>
+  <header class="topbar"><div class="logo">Tohu<sup>AI</sup></div><div class="date-label"></div><div class="mode-pill" onclick="cycleMode()"><span class="mode-dot"></span><span class="mode-label-text">Mode 1 — Capacity</span></div></header>
+  <div class="screen-inner">
+    <div><div class="screen-title">Capability Lab</div><div class="screen-sub">Diagnose the bottleneck. Automate the pattern. Prove it with evidence.</div></div>
+    <div class="loops-filter">
+      <button class="filter-btn active" onclick="switchCapTab('lab',this)">Lab</button>
+      <button class="filter-btn" onclick="switchCapTab('diagnostic',this)">Bottleneck Diagnostic</button>
+      <button class="filter-btn" onclick="switchCapTab('automation',this)">Automation Engine</button>
+      <button class="filter-btn" onclick="switchCapTab('evidence',this)">Evidence Board</button>
+    </div>
+
+    <!-- LAB TAB -->
+    <div id="cap-tab-lab" class="cap-tab">
+      <div class="panel" style="margin-bottom:14px">
+        <div class="section-label">Method of Success</div>
+        <div class="method-flow">
+          <div class="method-step"><div class="method-step-num">1</div><div><div class="method-step-label">Diagnose</div><div class="method-step-desc">What is the actual bottleneck? Not more info, another course, motivation or discipline.</div></div></div>
+          <div class="method-step-arrow">↓</div>
+          <div class="method-step"><div class="method-step-num">2</div><div><div class="method-step-label">Isolate</div><div class="method-step-desc">Reduce to the smallest pattern that needs strengthening.</div></div></div>
+          <div class="method-step-arrow">↓</div>
+          <div class="method-step"><div class="method-step-num">3</div><div><div class="method-step-label">Repeat</div><div class="method-step-desc">Same pattern, across multiple real-life contexts.</div></div></div>
+          <div class="method-step-arrow">↓</div>
+          <div class="method-step"><div class="method-step-num">4</div><div><div class="method-step-label">Automate</div><div class="method-step-desc">Retrieve and use it without rebuilding it from scratch.</div></div></div>
+          <div class="method-step-arrow">↓</div>
+          <div class="method-step"><div class="method-step-num">5</div><div><div class="method-step-label">Evidence</div><div class="method-step-desc">Record proof of actual performance.</div></div></div>
+          <div class="method-step-arrow">↓</div>
+          <div class="method-step"><div class="method-step-num">6</div><div><div class="method-step-label">Increase Complexity</div><div class="method-step-desc">Only once the simpler pattern is stable.</div></div></div>
+        </div>
+        <div style="margin-top:14px;padding-top:14px;border-top:1px solid var(--border-2)"><span class="tag tag-gold">One pattern. Many repetitions. Real contexts. Increasing complexity.</span></div>
+      </div>
+      <div class="section-label" style="margin-bottom:10px">Active capability experiments <button class="add-btn" onclick="toggleForm('track-form')">+</button></div>
+      <div class="add-form" id="track-form">
+        <input type="text" id="track-name-i" placeholder="Capability name (e.g. Te Reo Māori)" />
+        <textarea id="track-hyp-i" placeholder="Working hypothesis / primary bottleneck..."></textarea>
+        <div class="form-row">
+          <button class="btn-save" onclick="addTrack()">Add</button>
+          <button class="btn-cancel" onclick="toggleForm('track-form')">✕</button>
+        </div>
+      </div>
+      <div id="track-list"><div class="loading">Loading...</div></div>
+    </div>
+
+    <!-- DIAGNOSTIC TAB -->
+    <div id="cap-tab-diagnostic" class="cap-tab" style="display:none">
+      <div class="panel" style="margin-bottom:14px;border-left:3px solid var(--lego-orange)">
+        <div class="section-label">Primary bottleneck candidate</div>
+        <div class="signal-text">Insufficient automation of reusable sentence frames in spontaneous speech.</div>
+        <div class="signal-sub">Substantial kupu and multiple grammatical structures are already known, but a sufficiently automatic internal library of reusable sentence frames that stay stable under real-time speaking conditions may not yet exist.</div>
+      </div>
+      <div class="panel" style="margin-bottom:14px">
+        <div class="section-label">Secondary bottleneck candidate</div>
+        <div class="signal-text" style="font-size:14px">Sentence construction and precision under increasing complexity.</div>
+      </div>
+      <div class="panel">
+        <div class="section-label">Still to test</div>
+        <div class="checklist-row"><span class="checklist-dot"></span>Natural listening comprehension</div>
+        <div class="checklist-row"><span class="checklist-dot"></span>Auditory discrimination</div>
+        <div class="checklist-row"><span class="checklist-dot"></span>Response latency</div>
+        <div class="checklist-row"><span class="checklist-dot"></span>Unexpected question response</div>
+        <div class="checklist-row"><span class="checklist-dot"></span>Prepared versus spontaneous speech</div>
+        <div class="checklist-row"><span class="checklist-dot"></span>Emotional pressure</div>
+        <div class="checklist-row"><span class="checklist-dot"></span>Recall speed</div>
+        <div class="checklist-row"><span class="checklist-dot"></span>Grammar recognition versus grammar production</div>
+      </div>
+      <div class="signal-sub" style="margin-top:10px;font-style:italic">Working hypothesis based on four spontaneous performance samples. Not yet final.</div>
+    </div>
+
+    <!-- AUTOMATION ENGINE TAB -->
+    <div id="cap-tab-automation" class="cap-tab" style="display:none">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px"><div class="section-label" style="margin-bottom:0">Sentence-pattern tracker</div><button class="add-btn" onclick="toggleForm('pattern-form')">+</button></div>
+      <div class="add-form" id="pattern-form">
+        <input type="text" id="pat-name-i" placeholder="Pattern name (e.g. Kei te + verb progressive)" />
+        <input type="text" id="pat-frame-i" placeholder="Core sentence frame" />
+        <input type="text" id="pat-context-i" placeholder="Real-life context (e.g. mornings with Puku)" />
+        <textarea id="pat-attempt-i" placeholder="Spontaneous attempt (store raw, exactly as said)"></textarea>
+        <div class="form-row">
+          <select id="pat-stage-i"><option value="recognise">Recognise</option><option value="recall">Recall</option><option value="produce">Produce</option><option value="transfer">Transfer</option><option value="automate">Automate</option><option value="pressure">Pressure Test</option></select>
+          <select id="pat-pressure-i"><option value="no">Under pressure: No</option><option value="yes">Under pressure: Yes</option></select>
+          <select id="pat-context2-i"><option value="no">New context: No</option><option value="yes">New context: Yes</option></select>
+        </div>
+        <div class="form-row">
+          <button class="btn-save" onclick="addPattern()">Save pattern</button>
+          <button class="btn-cancel" onclick="toggleForm('pattern-form')">✕</button>
+        </div>
+      </div>
+      <div id="pattern-list"><div class="loading">Loading...</div></div>
+    </div>
+
+    <!-- EVIDENCE BOARD TAB -->
+    <div id="cap-tab-evidence" class="cap-tab" style="display:none">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px"><div class="section-label" style="margin-bottom:0">Evidence log</div><button class="add-btn" onclick="toggleForm('evidence-form')">+</button></div>
+      <div class="add-form" id="evidence-form">
+        <input type="text" id="ev-title-i" placeholder="Test / evidence title" />
+        <textarea id="ev-prompt-i" placeholder="Prompt or context given (optional)"></textarea>
+        <textarea id="ev-response-i" placeholder="Raw response — store exactly, don't correct it"></textarea>
+        <textarea id="ev-obs-i" placeholder="Observation / what this shows"></textarea>
+        <div class="form-row">
+          <button class="btn-save" onclick="addEvidence()">Log evidence</button>
+          <button class="btn-cancel" onclick="toggleForm('evidence-form')">✕</button>
+        </div>
+      </div>
+      <div id="evidence-list"><div class="loading">Loading...</div></div>
+    </div>
+  </div>
+  <nav class="bottom-nav">
+    <div class="nav-item" onclick="showScreen('dashboard')">Dashboard</div>
+    <div class="nav-item" onclick="showScreen('governance')">Governance</div>
+    <div class="nav-item" onclick="showScreen('loops')">Loops</div>
+    <div class="nav-item" onclick="showScreen('decisions')">Decisions</div>
+    <div class="nav-item" onclick="showScreen('coach')">Coach</div>
+    <div class="nav-item active" onclick="showScreen('capability')">Capability</div>
     <div class="nav-spacer"></div>
     <button class="review-btn" onclick="showScreen('review')">Weekly Review</button>
   </nav>
@@ -545,6 +697,127 @@ function showScreen(name) {
   if(name==='decisions') loadDecsFull();
   if(name==='review') startReview();
   if(name==='coach') loadCoachCtx();
+  if(name==='capability') renderCapAll();
+}
+
+// ═══════════════════
+// CAPABILITY LAB
+// ═══════════════════
+let capTracks = [], capPatterns = [], capEvidence = [];
+
+function switchCapTab(name, btn) {
+  document.querySelectorAll('.cap-tab').forEach(t=>t.style.display='none');
+  document.getElementById('cap-tab-'+name).style.display='block';
+  document.querySelectorAll('#screen-capability .filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+function renderCapAll() {
+  renderTracks();
+  renderPatterns();
+  renderEvidence();
+}
+
+function trackHTML(t) {
+  return `<div class="track-card">
+    <div style="display:flex;justify-content:space-between;align-items:start;gap:10px">
+      <div class="track-name">${t.name}</div>
+      <span class="m-status ${t.status==='active'?'m-active':'m-incubating'}">${t.status==='active'?'Active':'Incubating'}</span>
+    </div>
+    <div class="track-hyp">${t.hypothesis||'No hypothesis logged yet.'}</div>
+  </div>`;
+}
+
+function renderTracks() {
+  const el = document.getElementById('track-list');
+  if(!el) return;
+  el.innerHTML = capTracks.length ? capTracks.map(trackHTML).join('') : '<div class="empty-state">No capability experiments yet.</div>';
+}
+
+async function addTrack() {
+  const name = document.getElementById('track-name-i').value.trim();
+  const hypothesis = document.getElementById('track-hyp-i').value.trim();
+  if(!name) return;
+  const {data} = await dbInsert('capability_tracks', {name, hypothesis, status:'active'});
+  if(data) capTracks.unshift(data[0]);
+  document.getElementById('track-name-i').value='';
+  document.getElementById('track-hyp-i').value='';
+  toggleForm('track-form');
+  renderTracks();
+  toast('Capability experiment added');
+}
+
+const STAGE_LABEL = {recognise:'Recognise',recall:'Recall',produce:'Produce',transfer:'Transfer',automate:'Automate',pressure:'Pressure Test'};
+
+function patternHTML(p) {
+  return `<div class="pattern-card">
+    <div style="display:flex;justify-content:space-between;align-items:start;gap:10px">
+      <div><div class="pattern-name">${p.pattern_name}</div><div class="pattern-frame">${p.core_frame||''}</div></div>
+      <span class="stage-badge stage-${p.stage||'recognise'}">${STAGE_LABEL[p.stage]||'Recognise'}</span>
+    </div>
+    ${p.context?`<div class="signal-sub" style="margin-bottom:6px">${p.context}</div>`:''}
+    ${p.spontaneous_attempt?`<div class="evidence-item-body" style="margin-bottom:6px"><em>"${p.spontaneous_attempt}"</em></div>`:''}
+    <div class="pattern-meta-row">
+      <span class="pattern-stat">Repetitions: <b>${p.repetition_count||0}</b></span>
+      <span class="pattern-stat">Under pressure: <b>${p.can_use_pressure==='yes'?'Yes':'No'}</b></span>
+      <span class="pattern-stat">New context: <b>${p.can_transfer==='yes'?'Yes':'No'}</b></span>
+    </div>
+  </div>`;
+}
+
+function renderPatterns() {
+  const el = document.getElementById('pattern-list');
+  if(!el) return;
+  el.innerHTML = capPatterns.length ? capPatterns.map(patternHTML).join('') : '<div class="empty-state">No sentence patterns tracked yet.</div>';
+}
+
+async function addPattern() {
+  const pattern_name = document.getElementById('pat-name-i').value.trim();
+  const core_frame = document.getElementById('pat-frame-i').value.trim();
+  const context = document.getElementById('pat-context-i').value.trim();
+  const spontaneous_attempt = document.getElementById('pat-attempt-i').value.trim();
+  const stage = document.getElementById('pat-stage-i').value;
+  const can_use_pressure = document.getElementById('pat-pressure-i').value;
+  const can_transfer = document.getElementById('pat-context2-i').value;
+  if(!pattern_name) return;
+  const {data} = await dbInsert('capability_patterns', {pattern_name, core_frame, context, spontaneous_attempt, stage, can_use_pressure, can_transfer, repetition_count:1});
+  if(data) capPatterns.unshift(data[0]);
+  ['pat-name-i','pat-frame-i','pat-context-i','pat-attempt-i'].forEach(id=>document.getElementById(id).value='');
+  toggleForm('pattern-form');
+  renderPatterns();
+  toast('Pattern logged');
+}
+
+function evidenceHTML(e) {
+  const dt = e.created_at ? new Date(e.created_at) : new Date();
+  const ds = `${dt.getDate()} ${MONTHS[dt.getMonth()]}`;
+  return `<div class="evidence-item">
+    <div class="evidence-item-title">${e.title}</div>
+    ${e.prompt?`<div class="evidence-item-body"><b>Prompt:</b> ${e.prompt}</div>`:''}
+    ${e.response?`<div class="evidence-item-body"><b>Raw response:</b> <em>"${e.response}"</em></div>`:''}
+    ${e.observation?`<div class="evidence-item-body"><b>Observed:</b> ${e.observation}</div>`:''}
+    <div class="evidence-item-meta">${ds}</div>
+  </div>`;
+}
+
+function renderEvidence() {
+  const el = document.getElementById('evidence-list');
+  if(!el) return;
+  el.innerHTML = capEvidence.length ? capEvidence.map(evidenceHTML).join('') : '<div class="empty-state">No evidence logged yet.</div>';
+}
+
+async function addEvidence() {
+  const title = document.getElementById('ev-title-i').value.trim();
+  const prompt = document.getElementById('ev-prompt-i').value.trim();
+  const response = document.getElementById('ev-response-i').value.trim();
+  const observation = document.getElementById('ev-obs-i').value.trim();
+  if(!title) return;
+  const {data} = await dbInsert('capability_evidence', {title, prompt, response, observation});
+  if(data) capEvidence.unshift(data[0]);
+  ['ev-title-i','ev-prompt-i','ev-response-i','ev-obs-i'].forEach(id=>document.getElementById(id).value='');
+  toggleForm('evidence-form');
+  renderEvidence();
+  toast('Evidence logged');
 }
 
 // TOAST
@@ -855,6 +1128,10 @@ GOVERNANCE ENTITIES: Kaitangata 5E (Active — trustee filing), Parikino Marae (
 CURRENT OPEN LOOPS: ${coachCtx.openLoops?.join(', ')||'none'}
 RECENT DECISIONS: ${coachCtx.recentDecs?.join(' | ')||'none'}
 
+METHOD OF SUCCESS (apply this whenever coaching on any capability, not just te reo): Diagnose → Isolate → Repeat → Automate → Evidence → Increase Complexity. Knowledge is not capability until it becomes automatic, reusable and available under real-life pressure. Don't solve a knowledge problem when the real problem is automation. Don't suggest "more content" (courses, vocab, motivation) if the actual bottleneck is retrieval/automation under pressure.
+
+ACTIVE CAPABILITY EXPERIMENT — TE REO MĀORI (5-month breakthrough experiment, Month 1: Diagnose): Primary bottleneck hypothesis is insufficient automation of reusable sentence frames in spontaneous speech — substantial vocabulary and grammar already exist, but a stable, automatic library of sentence frames under real-time speaking conditions may not yet exist. Secondary bottleneck: sentence construction/precision breaks down as complexity increases. This is a working hypothesis from 4 diagnostic samples, not final.
+
 COACHING STYLE: Direct, warm, certain. No fluff. One powerful question at a time. Reference their actual data. Think with them not for them. Short responses unless depth is needed. Their flow state: "I just do, dont think, then done." When stuck: find the constraint. When scattered: find the loop to close first.`;
 }
 
@@ -993,6 +1270,82 @@ async function init() {
       // Seeding failed silently - not critical
     }
   }
+
+  // Load capability lab data
+  try {
+    const {data: td, error: te} = await dbSelect('capability_tracks', {order:'created_at', asc:false});
+    if(te) {
+      showError('track-list', `Supabase error loading capability tracks:<br><strong>${te.message}</strong><br><small>Run the setup SQL if these tables don't exist yet.</small>`);
+    } else {
+      capTracks = td || [];
+      if(!capTracks.some(t=>t.name==='Te Reo Māori')) {
+        const {data: seeded} = await dbInsert('capability_tracks', {
+          name:'Te Reo Māori',
+          status:'active',
+          hypothesis:'5-month breakthrough experiment (Month 1: Diagnose). Primary bottleneck: insufficient automation of reusable sentence frames in spontaneous speech. Secondary bottleneck: sentence construction/precision under increasing complexity. Working hypothesis from 4 diagnostic samples — not final.'
+        });
+        if(seeded) capTracks = [...seeded, ...capTracks];
+      }
+    }
+  } catch(e) { showError('track-list', `Connection failed: ${e.message}`); }
+
+  try {
+    const {data: pd, error: pe} = await dbSelect('capability_patterns', {order:'created_at', asc:false});
+    if(pe) {
+      showError('pattern-list', `Supabase error loading patterns:<br><strong>${pe.message}</strong><br><small>Run the setup SQL if these tables don't exist yet.</small>`);
+    } else {
+      capPatterns = pd || [];
+    }
+  } catch(e) { showError('pattern-list', `Connection failed: ${e.message}`); }
+
+  try {
+    const {data: ed, error: ee} = await dbSelect('capability_evidence', {order:'created_at', asc:false});
+    if(ee) {
+      showError('evidence-list', `Supabase error loading evidence:<br><strong>${ee.message}</strong><br><small>Run the setup SQL if these tables don't exist yet.</small>`);
+    } else {
+      capEvidence = ed || [];
+      const titles = capEvidence.map(e=>e.title);
+      const diagnosticsToSeed = [];
+      if(!titles.includes('Diagnostic 1 — Real-Life Instruction')) {
+        diagnosticsToSeed.push({
+          title:'Diagnostic 1 — Real-Life Instruction',
+          prompt:'Puku, get your clothes on. We\'re going to be late. Where are your shoes? Come here and eat your breakfast first. I\'m going to get the car ready.',
+          response:'Mau to kakahu puku. Kei te tureiti matou. Kei wea ou hu. Haeremai ki te kai. E ai to parakuihi. Kei te haere au ki te whakarite te waka',
+          observation:'Spontaneously retrieved clothing vocab, pronouns, possessives, location/question structures, progressive structures, imperatives, movement/purpose structures, household vocab. Not operating as a zero-knowledge beginner.'
+        });
+      }
+      if(!titles.includes('Diagnostic 2 — Emotional Context + Instructions')) {
+        diagnosticsToSeed.push({
+          title:'Diagnostic 2 — Emotional Context + Instructions',
+          prompt:'It\'s okay. Don\'t cry. Come here. I\'ll clean it up. Go get me a cloth from the kitchen, then sit down and finish your breakfast.',
+          response:'Ktpai, kaua e tangi. Haere mai. Kei te whakapai au. Haere ki te tiki te taora ki te kihini, me noho koe me mutu to kai',
+          observation:'Negative command, imperative, progressive structure, movement + purpose, kitchen vocab, directive structures, action sequencing. Core meaning available, but precision less stable as sentence complexity/sequencing increased.'
+        });
+      }
+      if(!titles.includes('Diagnostic 3 — Direct Māori Generation')) {
+        diagnosticsToSeed.push({
+          title:'Diagnostic 3 — Direct Māori Generation',
+          prompt:'Generate five true thoughts about the present moment directly in Māori (no English prompt).',
+          response:'E noho au ki runga te moenga. Kei te kai a ia ki te kihini. Kei te titiro au te paruparu. Kei te ngene ahau. Kei te hui 5.30 karaka',
+          observation:'Could independently generate thoughts in Māori without translating from English. Translation dependence should be downgraded as the sole/primary explanation. Sentence architecture less stable where grammatical relationships were required.'
+        });
+      }
+      if(!titles.includes('Diagnostic 4 — Pattern Transfer')) {
+        diagnosticsToSeed.push({
+          title:'Diagnostic 4 — Pattern Transfer',
+          prompt:'1. I am sitting on the bed. 2. Puku is sitting on the chair. 3. The clothes are on the floor. 4. My phone is on the bed. 5. I am looking at the clothes on the floor.',
+          response:'Kei te noho au ki te moenga / E noho a puku ki te turu / Nga kakahu ki te papa / Taku waea pukoro ki te moenga / kei te titiro ki nga kakahu ki te papa',
+          observation:'Knew substantial content vocab (sitting, bed, chair, clothes, floor, phone, looking), but the reusable sentence frame changed or disappeared across related sentences — shifted between "Kei te..." and "E...", some outputs became noun/location fragments, actor marking disappeared in a more complex sentence.'
+        });
+      }
+      if(diagnosticsToSeed.length) {
+        const {data: seededEv} = await dbInsert('capability_evidence', diagnosticsToSeed);
+        if(seededEv) capEvidence = [...seededEv, ...capEvidence];
+      }
+    }
+  } catch(e) { showError('evidence-list', `Connection failed: ${e.message}`); }
+
+  renderCapAll();
 }
 
 init();
