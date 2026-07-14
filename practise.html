@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="mi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>Tohu.AI — Practice</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cacao: #4a3428;
+    --cacao-light: #7a5c47;
+    --sage: #8a9a7e;
+    --sage-dark: #5f6e54;
+    --sand: #f2ead9;
+    --sand-light: #faf6ec;
+    --white: #ffffff;
+    --amber: #c98a3e;
+    --error: #b5533c;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--sand-light);
+    color: var(--cacao);
+    font-family: 'DM Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+  h1, h2, .display {
+    font-family: 'Playfair Display', serif;
+  }
+  .app {
+    max-width: 480px;
+    margin: 0 auto;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  header {
+    padding: 20px 20px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #e8ddc8;
+  }
+  .brand { font-size: 22px; font-weight: 700; color: var(--cacao); }
+  .brand sup { font-size: 11px; color: var(--sage-dark); font-weight: 700; margin-left: 2px; }
+  .mode-pill {
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--sage-dark);
+    background: var(--sand);
+    border: 1px solid var(--sage);
+    border-radius: 999px;
+    padding: 6px 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .mode-pill .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--sage-dark); }
+  .settings-btn {
+    background: none; border: none; color: var(--cacao-light);
+    font-size: 20px; cursor: pointer; padding: 8px;
+  }
+  main { flex: 1; padding: 24px 20px 40px; display: flex; flex-direction: column; }
+
+  .frame-card {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 28px 24px;
+    box-shadow: 0 1px 3px rgba(74,52,40,0.06);
+    border: 1px solid #ede3cd;
+  }
+  .eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--sage-dark);
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .frame-text {
+    font-size: 26px;
+    line-height: 1.35;
+    font-weight: 500;
+    color: var(--cacao);
+    margin-bottom: 6px;
+  }
+  .frame-meaning {
+    font-size: 15px;
+    color: var(--cacao-light);
+    margin-bottom: 20px;
+  }
+  .unverified-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--error);
+    background: #fbeee9;
+    border-radius: 999px;
+    padding: 5px 10px;
+    margin-bottom: 18px;
+  }
+  .no-source-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--amber);
+    background: #fbf0dd;
+    border-radius: 999px;
+    padding: 5px 10px;
+    margin-bottom: 18px;
+  }
+  .check-teaka {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--sage-dark);
+    text-decoration: none;
+    border-bottom: 1px solid var(--sage);
+    margin-bottom: 20px;
+  }
+
+  .rep-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 18px;
+  }
+  .rep-count { font-size: 15px; color: var(--cacao-light); }
+  .rep-count strong { color: var(--cacao); font-size: 17px; }
+  .rep-dots { display: flex; gap: 6px; }
+  .rep-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: #e8ddc8;
+  }
+  .rep-dot.filled { background: var(--sage-dark); }
+
+  .say-btn {
+    width: 100%;
+    background: var(--cacao);
+    color: var(--white);
+    border: none;
+    border-radius: 14px;
+    padding: 18px;
+    font-size: 17px;
+    font-weight: 700;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    transition: transform 0.1s ease, opacity 0.2s ease;
+  }
+  .say-btn:active { transform: scale(0.98); }
+  .say-btn:disabled { opacity: 0.5; }
+
+  .note-panel {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid #ede3cd;
+  }
+  .note-panel textarea {
+    width: 100%;
+    border: 1px solid #ddd0b3;
+    border-radius: 10px;
+    padding: 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--cacao);
+    resize: none;
+    min-height: 60px;
+    margin-bottom: 10px;
+  }
+  .note-actions { display: flex; gap: 10px; }
+  .note-actions button {
+    flex: 1;
+    padding: 12px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 14px;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    border: none;
+  }
+  .save-note { background: var(--sage-dark); color: var(--white); }
+  .skip-note { background: var(--sand); color: var(--cacao-light); border: 1px solid #ddd0b3 !important; }
+
+  .confirm {
+    text-align: center;
+    padding: 14px;
+    background: #eef2ea;
+    border-radius: 12px;
+    color: var(--sage-dark);
+    font-weight: 700;
+    font-size: 14px;
+    margin-top: 16px;
+  }
+
+  .settings-view { padding: 4px 0; }
+  .field-label { font-size: 13px; font-weight: 700; color: var(--cacao-light); margin-bottom: 8px; margin-top: 20px; }
+  .field-label:first-child { margin-top: 0; }
+  input[type="time"] {
+    width: 100%;
+    padding: 14px;
+    border-radius: 10px;
+    border: 1px solid #ddd0b3;
+    font-size: 16px;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--cacao);
+    background: var(--white);
+  }
+  .days-row { display: flex; gap: 6px; flex-wrap: wrap; }
+  .day-chip {
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #ddd0b3;
+    background: var(--white);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--cacao-light);
+    cursor: pointer;
+  }
+  .day-chip.active { background: var(--sage-dark); border-color: var(--sage-dark); color: var(--white); }
+  .back-link {
+    background: none; border: none; color: var(--sage-dark);
+    font-weight: 700; font-size: 14px; cursor: pointer;
+    margin-bottom: 20px; padding: 0;
+  }
+  .notif-status {
+    margin-top: 24px;
+    padding: 14px;
+    border-radius: 10px;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  .notif-status.ok { background: #eef2ea; color: var(--sage-dark); }
+  .notif-status.warn { background: #fbf0dd; color: var(--amber); }
+
+  .error-boundary {
+    padding: 40px 20px;
+    text-align: center;
+    color: var(--error);
+  }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.24.7/babel.min.js"></script>
+
+<script type="text/babel" data-presets="react">
+const { useState, useEffect, useCallback } = React;
+
+/* ============================================================
+   CONFIG — fill these in before deploying.
+   Get them from your Supabase project settings > API.
+   ============================================================ */
+const SUPABASE_URL = "https://YOUR-PROJECT.supabase.co"; // TODO
+const SUPABASE_KEY = "YOUR-PUBLISHABLE-KEY";              // TODO
+
+/* Raw fetch to Supabase REST — never supabase-js on mobile (Lesson 3) */
+async function sbFetch(path, options = {}) {
+  const res = await fetch(`${SUPABASE_URL}/rest/v1/${path}`, {
+    ...options,
+    headers: {
+      "apikey": SUPABASE_KEY,
+      "Authorization": `Bearer ${SUPABASE_KEY}`,
+      "Content-Type": "application/json",
+      "Prefer": options.prefer || "return=representation",
+      ...(options.headers || {})
+    }
+  });
+  if (!res.ok) {
+    const msg = await res.text().catch(() => res.statusText);
+    throw new Error(`Supabase ${res.status}: ${msg}`);
+  }
+  const text = await res.text();
+  return text ? JSON.parse(text) : null;
+}
+
+/* ---------- ErrorBoundary (Lesson 6 — never skip this) ---------- */
+class ErrorBoundary extends React.Component {
+  constructor(props) { super(props); this.state = { error: null }; }
+  static getDerivedStateFromError(error) { return { error }; }
+  render() {
+    if (this.state.error) {
+      return (
+        <div className="error-boundary">
+          <h2 className="display">Something went sideways</h2>
+          <p style={{marginTop: 10, fontSize: 14}}>{this.state.error.message}</p>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
+
+/* ---------- Notification helper ---------- */
+function useNotificationPermission() {
+  const [status, setStatus] = useState(
+    typeof Notification !== "undefined" ? Notification.permission : "unsupported"
+  );
+  const request = useCallback(async () => {
+    if (typeof Notification === "undefined") return;
+    const result = await Notification.requestPermission();
+    setStatus(result);
+  }, []);
+  return { status, request };
+}
+
+/* ---------- Main App ---------- */
+function App() {
+  const [view, setView] = useState("frame"); // "frame" | "settings"
+  const [frame, setFrame] = useState(null);
+  const [repCount, setRepCount] = useState(0);
+  const [target, setTarget] = useState(5);
+  const [showNote, setShowNote] = useState(false);
+  const [noteText, setNoteText] = useState("");
+  const [justSaved, setJustSaved] = useState(false);
+  const [schedule, setSchedule] = useState({ time: "07:30", days: ["mon","tue","wed","thu","fri"] });
+  const [loadError, setLoadError] = useState(null);
+  const { status: notifStatus, request: requestNotif } = useNotificationPermission();
+
+  const DAY_LABELS = [
+    { key: "sun", label: "S" }, { key: "mon", label: "M" }, { key: "tue", label: "T" },
+    { key: "wed", label: "W" }, { key: "thu", label: "T" }, { key: "fri", label: "F" },
+    { key: "sat", label: "S" }
+  ];
+
+  const loadActiveFrame = useCallback(async () => {
+    try {
+      // Active frame = most recently created th_frame with status != archived
+      const frames = await sbFetch("th_frame?select=*&order=created_at.desc&limit=1");
+      if (frames && frames.length) {
+        const f = frames[0];
+        setFrame(f);
+        const weekStart = getWeekStart();
+        const logs = await sbFetch(
+          `th_rep_log?select=id&frame_id=eq.${f.id}&week_start=eq.${weekStart}`
+        );
+        setRepCount(logs ? logs.length : 0);
+      }
+    } catch (e) {
+      setLoadError(e.message);
+    }
+  }, []);
+
+  useEffect(() => { loadActiveFrame(); }, [loadActiveFrame]);
+
+  function getWeekStart() {
+    const d = new Date();
+    const day = d.getDay();
+    const diff = d.getDate() - day + (day === 0 ? -6 : 1); // Monday start
+    const monday = new Date(d.setDate(diff));
+    return monday.toISOString().slice(0, 10);
+  }
+
+  async function handleSaidIt() {
+    setShowNote(true);
+  }
+
+  async function saveRep(withNote) {
+    if (!frame) return;
+    try {
+      await sbFetch("th_rep_log", {
+        method: "POST",
+        body: JSON.stringify({
+          frame_id: frame.id,
+          logged_at: new Date().toISOString(),
+          method: withNote && noteText ? "text_note" : "tap",
+          raw_text: withNote ? noteText : null,
+          week_start: getWeekStart()
+        })
+      });
+      setRepCount(c => c + 1);
+      setShowNote(false);
+      setNoteText("");
+      setJustSaved(true);
+      setTimeout(() => setJustSaved(false), 2200);
+    } catch (e) {
+      setLoadError(e.message);
+    }
+  }
+
+  const teAkaUrl = frame
+    ? `https://maoridictionary.co.nz/search?keywords=${encodeURIComponent(frame.pattern_name || frame.core_frame || "")}`
+    : "#";
+
+  if (view === "settings") {
+    return (
+      <Settings
+        schedule={schedule}
+        setSchedule={setSchedule}
+        dayLabels={DAY_LABELS}
+        notifStatus={notifStatus}
+        requestNotif={requestNotif}
+        onBack={() => setView("frame")}
+      />
+    );
+  }
+
+  return (
+    <div className="app">
+      <header>
+        <div className="brand">Tohu<sup>AI</sup></div>
+        <div style={{display: "flex", alignItems: "center", gap: 10}}>
+          <div className="mode-pill"><span className="dot"></span>Practice</div>
+          <button className="settings-btn" onClick={() => setView("settings")} aria-label="Settings">⚙</button>
+        </div>
+      </header>
+
+      <main>
+        {loadError && (
+          <div className="notif-status warn" style={{marginBottom: 16}}>
+            Couldn't load your frame: {loadError}. Check your Supabase config at the top of this file.
+          </div>
+        )}
+
+        {!frame && !loadError && (
+          <div className="frame-card">
+            <p style={{color: "var(--cacao-light)", fontSize: 15}}>
+              No active frame yet. Add one to your Kupu Bank's Sentence-Pattern Tracker, and it'll show up here.
+            </p>
+          </div>
+        )}
+
+        {frame && (
+          <div className="frame-card">
+            <div className="eyebrow">This week's frame</div>
+            <div className="frame-text">{frame.core_frame || frame.pattern_name}</div>
+            {frame.meaning && <div className="frame-meaning">{frame.meaning}</div>}
+
+            {frame.status === "no_source_found" && (
+              <div className="no-source-tag">⚠ No source found yet — needs a fluent speaker to originate this</div>
+            )}
+            {frame.status === "unverified" && frame.status !== "no_source_found" && (
+              <div><span className="unverified-tag">⚠ Unverified — confirm before repeating</span></div>
+            )}
+            {frame.status === "unverified" && (
+              <div><a className="check-teaka" href={teAkaUrl} target="_blank" rel="noopener noreferrer">
+                Check on Te Aka →
+              </a></div>
+            )}
+
+            <div className="rep-row">
+              <div className="rep-count"><strong>{repCount}</strong> of {target} this week</div>
+              <div className="rep-dots">
+                {Array.from({length: target}).map((_, i) => (
+                  <div key={i} className={`rep-dot ${i < repCount ? "filled" : ""}`}></div>
+                ))}
+              </div>
+            </div>
+
+            {!showNote && (
+              <button
+                className="say-btn"
+                onClick={handleSaidIt}
+                disabled={frame.status === "no_source_found"}
+              >
+                I said it
+              </button>
+            )}
+
+            {showNote && (
+              <div className="note-panel">
+                <textarea
+                  placeholder="What actually came out? (optional, exactly as said)"
+                  value={noteText}
+                  onChange={e => setNoteText(e.target.value)}
+                />
+                <div className="note-actions">
+                  <button className="skip-note" onClick={() => saveRep(false)}>Skip note</button>
+                  <button className="save-note" onClick={() => saveRep(true)}>Save</button>
+                </div>
+              </div>
+            )}
+
+            {justSaved && <div className="confirm">Logged. Ka pai.</div>}
+          </div>
+        )}
+      </main>
+    </div>
+  );
+}
+
+/* ---------- Settings screen ---------- */
+function Settings({ schedule, setSchedule, dayLabels, notifStatus, requestNotif, onBack }) {
+  function toggleDay(key) {
+    setSchedule(s => ({
+      ...s,
+      days: s.days.includes(key) ? s.days.filter(d => d !== key) : [...s.days, key]
+    }));
+  }
+
+  return (
+    <div className="app">
+      <header>
+        <div className="brand">Tohu<sup>AI</sup></div>
+      </header>
+      <main>
+        <div className="settings-view">
+          <button className="back-link" onClick={onBack}>← Back to practice</button>
+          <h2 className="display" style={{fontSize: 22, marginBottom: 4}}>Reminder</h2>
+          <p style={{fontSize: 14, color: "var(--cacao-light)"}}>
+            Pick the daily moment this frame actually happens — not a random time.
+          </p>
+
+          <div className="field-label">Time</div>
+          <input
+            type="time"
+            value={schedule.time}
+            onChange={e => setSchedule(s => ({...s, time: e.target.value}))}
+          />
+
+          <div className="field-label">Days</div>
+          <div className="days-row">
+            {dayLabels.map(d => (
+              <div
+                key={d.key}
+                className={`day-chip ${schedule.days.includes(d.key) ? "active" : ""}`}
+                onClick={() => toggleDay(d.key)}
+              >
+                {d.label}
+              </div>
+            ))}
+          </div>
+
+          {notifStatus !== "granted" && (
+            <div className="notif-status warn">
+              Reminders need permission to fire. {notifStatus === "denied"
+                ? "Notifications are blocked in your browser settings — you'll need to allow them there."
+                : ""}
+              {notifStatus !== "denied" && (
+                <div style={{marginTop: 10}}>
+                  <button className="say-btn" style={{padding: "10px"}} onClick={requestNotif}>
+                    Allow reminders
+                  </button>
+                </div>
+              )}
+            </div>
+          )}
+          {notifStatus === "granted" && (
+            <div className="notif-status ok">Reminders are on. Note: on some Android phones, background reminders can be unreliable when the app isn't open — if it doesn't fire, open the app directly at your chosen time as a fallback.</div>
+          )}
+        </div>
+      </main>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <ErrorBoundary><App /></ErrorBoundary>
+);
+</script>
+</body>
+</html>
