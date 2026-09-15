@@ -216,6 +216,12 @@ body { background: var(--bg); color: var(--ink); font-family: var(--font-body); 
 .checklist-row { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--border-2); font-size: 12px; color: var(--ink-2); }
 .checklist-row:last-child { border-bottom: none; }
 .checklist-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--ink-4); flex-shrink: 0; }
+.rerenga-line { min-height: 32px; font-family: var(--font-display); font-size: 18px; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+.rerenga-line .placeholder-word { color: var(--ink-4); font-weight: 400; }
+.rerenga-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.rerenga-chip { background: var(--white); border: 1px solid var(--border); border-radius: 20px; padding: 8px 16px; font-size: 13px; color: var(--ink); cursor: pointer; transition: all .15s; }
+.rerenga-chip:hover { border-color: var(--lego-orange); background: var(--lego-orange-dim); }
+.rerenga-chip small { color: var(--ink-3); display: block; font-size: 10px; }
 .kupu-card { background: var(--white); border: 1px solid var(--border); border-radius: 4px; padding: 12px 16px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; gap: 10px; }
 .edit-btn { background: none; border: 1px solid var(--border); border-radius: 20px; padding: 5px 14px; font-size: 10px; letter-spacing: .05em; text-transform: uppercase; color: var(--ink-3); cursor: pointer; flex-shrink: 0; }
 .edit-btn:hover { border-color: var(--cacao-mid); color: var(--ink); }
@@ -339,16 +345,15 @@ body { background: var(--bg); color: var(--ink); font-family: var(--font-body); 
     </div>
     <div><div class="section-label" style="margin-bottom:14px">Where the energy goes — top 3</div>
     <div class="mission-cards">
-      <div class="mission-card card-cacao" style="display:none"><div class="mission-card-num">Mission 01</div><div class="mission-card-name">Personal OS</div><div class="mission-card-dca">Transform capability into assets through repeatable systems.</div><div class="mission-card-outcomes"><span class="tag tag-cacao">Capability</span><span class="tag tag-cacao">Credibility</span><span class="tag tag-cacao">Stability</span><span class="tag tag-cacao">Autonomy</span></div><div class="mission-card-footer"><span>Building now</span><span class="m-status m-active">Active</span></div></div>
-      <div class="mission-card card-sage" onclick="showScreen('governance')" style="display:none"><div class="mission-card-num">Mission 02</div><div class="mission-card-name">Governance</div><div class="mission-card-dca">Create a repeatable governance operating system.</div><div class="mission-card-outcomes"><span class="tag tag-sage">1 Active</span><span class="tag tag-dim">2 Waiting</span><span class="tag tag-dim">5 Incubating</span></div><div class="mission-card-footer"><span>Tap to view all 8 →</span><span class="m-status m-active">Active</span></div></div>
+      <div class="mission-card card-cacao"><div class="mission-card-num">Mission 01</div><div class="mission-card-name">Personal OS</div><div class="mission-card-dca">Transform capability into assets through repeatable systems.</div><div class="mission-card-outcomes"><span class="tag tag-cacao">Capability</span><span class="tag tag-cacao">Credibility</span><span class="tag tag-cacao">Stability</span><span class="tag tag-cacao">Autonomy</span></div><div class="mission-card-footer"><span>Building now</span><span class="m-status m-active">Active</span></div></div>
+      <div class="mission-card card-sage" onclick="showScreen('governance')"><div class="mission-card-num">Mission 02</div><div class="mission-card-name">Governance</div><div class="mission-card-dca">Create a repeatable governance operating system.</div><div class="mission-card-outcomes"><span class="tag tag-sage">1 Active</span><span class="tag tag-dim">2 Waiting</span><span class="tag tag-dim">5 Incubating</span></div><div class="mission-card-footer"><span>Tap to view all 8 →</span><span class="m-status m-active">Active</span></div></div>
       <div class="mission-card card-sand"><div class="mission-card-num">Mission 03</div><div class="mission-card-name">Kupu</div><div class="mission-card-dca">Build Māori capability through AI, technology, software, and innovation.</div><div class="mission-card-outcomes"><span class="tag tag-sand">Capability</span><span class="tag tag-sand">Credibility</span><span class="tag tag-sand">Stability</span><span class="tag tag-sand">Autonomy</span></div><div class="mission-card-footer"><span>Highest impact</span><span class="m-status m-active">Active</span></div></div>
     </div></div>
     <div class="all-missions">View all missions →</div>
   </div>
   <nav class="bottom-nav">
     <div class="nav-item active" onclick="showScreen('dashboard')">Dashboard</div>
-    <div class="nav-item" onclick="showScreen('governance')" style="display:none">Governance</div>
-    <div class="nav-item" onclick="showScreen('funding')">Funding</div>
+    <div class="nav-item" onclick="showScreen('governance')">Governance</div>
     <div class="nav-item" onclick="showScreen('loops')">Loops</div>
     <div class="nav-item" onclick="showScreen('decisions')">Decisions</div>
     <div class="nav-item" onclick="showScreen('coach')">Coach</div>
@@ -378,8 +383,7 @@ body { background: var(--bg); color: var(--ink); font-family: var(--font-body); 
   </div>
   <nav class="bottom-nav">
     <div class="nav-item" onclick="showScreen('dashboard')">Dashboard</div>
-    <div class="nav-item active" onclick="showScreen('governance')" style="display:none">Governance</div>
-    <div class="nav-item" onclick="showScreen('funding')">Funding</div>
+    <div class="nav-item active" onclick="showScreen('governance')">Governance</div>
     <div class="nav-item" onclick="showScreen('loops')">Loops</div>
     <div class="nav-item" onclick="showScreen('decisions')">Decisions</div>
     <div class="nav-item" onclick="showScreen('coach')">Coach</div>
@@ -408,8 +412,7 @@ body { background: var(--bg); color: var(--ink); font-family: var(--font-body); 
   </div>
   <nav class="bottom-nav">
     <div class="nav-item" onclick="showScreen('dashboard')">Dashboard</div>
-    <div class="nav-item" onclick="showScreen('governance')" style="display:none">Governance</div>
-    <div class="nav-item" onclick="showScreen('funding')">Funding</div>
+    <div class="nav-item" onclick="showScreen('governance')">Governance</div>
     <div class="nav-item active" onclick="showScreen('loops')">Loops</div>
     <div class="nav-item" onclick="showScreen('decisions')">Decisions</div>
     <div class="nav-item" onclick="showScreen('coach')">Coach</div>
@@ -437,8 +440,7 @@ body { background: var(--bg); color: var(--ink); font-family: var(--font-body); 
   </div>
   <nav class="bottom-nav">
     <div class="nav-item" onclick="showScreen('dashboard')">Dashboard</div>
-    <div class="nav-item" onclick="showScreen('governance')" style="display:none">Governance</div>
-    <div class="nav-item" onclick="showScreen('funding')">Funding</div>
+    <div class="nav-item" onclick="showScreen('governance')">Governance</div>
     <div class="nav-item" onclick="showScreen('loops')">Loops</div>
     <div class="nav-item active" onclick="showScreen('decisions')">Decisions</div>
     <div class="nav-item" onclick="showScreen('coach')">Coach</div>
@@ -470,8 +472,7 @@ body { background: var(--bg); color: var(--ink); font-family: var(--font-body); 
   </div>
   <nav class="bottom-nav">
     <div class="nav-item" onclick="showScreen('dashboard')">Dashboard</div>
-    <div class="nav-item" onclick="showScreen('governance')" style="display:none">Governance</div>
-    <div class="nav-item" onclick="showScreen('funding')">Funding</div>
+    <div class="nav-item" onclick="showScreen('governance')">Governance</div>
     <div class="nav-item" onclick="showScreen('loops')">Loops</div>
     <div class="nav-item" onclick="showScreen('decisions')">Decisions</div>
     <div class="nav-item active" onclick="showScreen('coach')">Coach</div>
@@ -505,8 +506,7 @@ body { background: var(--bg); color: var(--ink); font-family: var(--font-body); 
   </div>
   <nav class="bottom-nav">
     <div class="nav-item" onclick="showScreen('dashboard')">Dashboard</div>
-    <div class="nav-item" onclick="showScreen('governance')" style="display:none">Governance</div>
-    <div class="nav-item" onclick="showScreen('funding')">Funding</div>
+    <div class="nav-item" onclick="showScreen('governance')">Governance</div>
     <div class="nav-item" onclick="showScreen('loops')">Loops</div>
     <div class="nav-item" onclick="showScreen('decisions')">Decisions</div>
     <div class="nav-item" onclick="showScreen('coach')">Coach</div>
@@ -592,24 +592,7 @@ body { background: var(--bg); color: var(--ink); font-family: var(--font-body); 
 
     <!-- AUTOMATION ENGINE TAB -->
     <div id="cap-tab-automation" class="cap-tab" style="display:none">
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px"><div class="section-label" style="margin-bottom:0">Rerenga Kōrero — pattern library</div></div>
-      <div id="rerenga-list"><div class="loading">Loading...</div></div>
-
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;margin-top:20px"><div class="section-label" style="margin-bottom:0">Phrase bank (pre-verified — check, then use)</div><button class="add-btn" onclick="toggleForm('phrase-form')">+</button></div>
-      <div class="add-form" id="phrase-form">
-        <input type="hidden" id="ph-edit-id" value="" />
-        <input type="text" id="ph-phrase-i" placeholder="The full sentence" />
-        <input type="text" id="ph-meaning-i" placeholder="Meaning" />
-        <input type="text" id="ph-context-i" placeholder="Real-life context (e.g. nappy changing)" />
-        <input type="text" id="ph-source-i" placeholder="Source (e.g. Awhi Kāri, Te Aka, kaumātua name)" />
-        <div class="form-row">
-          <button class="btn-save" id="ph-save-btn" onclick="addPhrase()">Add phrase</button>
-          <button class="btn-cancel" onclick="closePhraseForm()">✕</button>
-        </div>
-      </div>
-      <div id="phrase-list"><div class="loading">Loading...</div></div>
-
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;margin-top:20px"><div class="section-label" style="margin-bottom:0">Sentence-pattern tracker</div><button class="add-btn" onclick="toggleForm('pattern-form')">+</button></div>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px"><div class="section-label" style="margin-bottom:0">Sentence-pattern tracker</div><button class="add-btn" onclick="toggleForm('pattern-form')">+</button></div>
       <div class="add-form" id="pattern-form">
         <input type="text" id="pat-name-i" placeholder="Pattern name (e.g. Kei te + verb progressive)" />
         <input type="text" id="pat-frame-i" placeholder="Core sentence frame" />
@@ -670,6 +653,16 @@ body { background: var(--bg); color: var(--ink); font-family: var(--font-body); 
     <!-- KUPU BANK TAB -->
     <div id="cap-tab-kupu" class="cap-tab" style="display:none">
       <div class="panel" style="margin-bottom:14px">
+        <div class="section-label">Grammar basics — automatic reference</div>
+        <div class="checklist-row"><span class="checklist-dot"></span><span><b>He</b> — "a/an ___", classifying what kind of thing something is. He kurī tēnā. (That's a dog.)</span></div>
+        <div class="checklist-row"><span class="checklist-dot"></span><span><b>Ko</b> — naming/identifying a specific person or thing, especially names and "who." Ko Mere tēnei. (This is Mere.)</span></div>
+        <div class="checklist-row"><span class="checklist-dot"></span><span><b>I</b> — simple past, already over. I haere ia. (He/she went.)</span></div>
+        <div class="checklist-row"><span class="checklist-dot"></span><span><b>Kua</b> — already done, relevant now. Kua haere ia. (He/she has gone.)</span></div>
+        <div class="checklist-row"><span class="checklist-dot"></span><span><b>Kei te</b> — happening right now. Kei te haere ia. (He/she is going.)</span></div>
+        <div class="checklist-row"><span class="checklist-dot"></span><span><b>E...ana</b> — also happening now, more formal register. E haere ana ia.</span></div>
+        <div class="checklist-row"><span class="checklist-dot"></span><span><b>Ka</b> — future, or "and then" in a sequence. Ka haere ia āpōpō. (He/she will go tomorrow.)</span></div>
+      </div>
+      <div class="panel" style="margin-bottom:14px">
         <div class="section-label">Glossary — no grammar background needed</div>
         <div class="checklist-row"><span class="checklist-dot"></span><span><b>Action word (verb)</b> — the doing word. haere (go), kai (eat), noho (sit), titiro (look)</span></div>
         <div class="checklist-row"><span class="checklist-dot"></span><span><b>Actor</b> — who's doing it. au (I), koe (you), ia (they/he/she), matou (us)</span></div>
@@ -688,6 +681,12 @@ body { background: var(--bg); color: var(--ink); font-family: var(--font-body); 
           <option value="Karanga">Karanga</option>
           <option value="Waiata">Waiata</option>
         </select>
+        <select id="ku-cat-i">
+          <option value="">Foundation category (optional)</option>
+          <option value="Tūingoa">Tūingoa — naming word</option>
+          <option value="Tūmahi">Tūmahi — doing word</option>
+          <option value="Tūāhua">Tūāhua — describing word</option>
+        </select>
         <input type="text" id="ku-word-i" placeholder="Kupu / whakataukī / karanga / waiata" />
         <input type="text" id="ku-meaning-i" placeholder="Meaning" />
         <input type="text" id="ku-context-i" placeholder="Where it came up (optional)" />
@@ -696,69 +695,33 @@ body { background: var(--bg); color: var(--ink); font-family: var(--font-body); 
           <button class="btn-cancel" onclick="closeKupuForm()">✕</button>
         </div>
       </div>
+      <div class="loops-filter" id="kupu-cat-filter">
+        <button class="filter-btn active" onclick="filterKupuByCat('all',this)">All</button>
+        <button class="filter-btn" onclick="filterKupuByCat('Tūingoa',this)">Tūingoa</button>
+        <button class="filter-btn" onclick="filterKupuByCat('Tūmahi',this)">Tūmahi</button>
+        <button class="filter-btn" onclick="filterKupuByCat('Tūāhua',this)">Tūāhua</button>
+      </div>
+      <div class="panel" style="margin-bottom:14px">
+        <div class="section-label">Hanga Rerenga — build a sentence</div>
+        <div class="signal-sub" style="margin-bottom:10px">Tap one word from each block in order. Tūāhua is optional — skip it if the sentence doesn't need one.</div>
+        <div id="rerenga-line" class="rerenga-line"></div>
+        <div id="rerenga-step-label" class="section-label" style="margin-top:6px;margin-bottom:8px"></div>
+        <div id="rerenga-chips" class="rerenga-chips"></div>
+        <div class="form-row" style="margin-top:10px">
+          <button class="btn-cancel" onclick="rerengaReset()">Reset</button>
+          <button class="btn-cancel" id="rerenga-skip-btn" onclick="rerengaSkip()" style="display:none">Skip this block</button>
+        </div>
+      </div>
       <div id="kupu-list"><div class="loading">Loading...</div></div>
     </div>
   </div>
   <nav class="bottom-nav">
     <div class="nav-item" onclick="showScreen('dashboard')">Dashboard</div>
-    <div class="nav-item" onclick="showScreen('governance')" style="display:none">Governance</div>
-    <div class="nav-item" onclick="showScreen('funding')">Funding</div>
+    <div class="nav-item" onclick="showScreen('governance')">Governance</div>
     <div class="nav-item" onclick="showScreen('loops')">Loops</div>
     <div class="nav-item" onclick="showScreen('decisions')">Decisions</div>
     <div class="nav-item" onclick="showScreen('coach')">Coach</div>
     <div class="nav-item active" onclick="showScreen('capability')">Capability</div>
-    <div class="nav-spacer"></div>
-    <button class="review-btn" onclick="showScreen('review')">Weekly Review</button>
-  </nav>
-</div>
-
-<!-- FUNDING -->
-<div class="screen" id="screen-funding">
-  <div class="principle-bar"><span class="principle-label">How I operate</span><span class="principle-text">I don't measure success by how busy I am. I measure it by the assets, capability, and evidence I create.</span></div>
-  <div class="screen-body">
-    <div class="screen-title">Funding</div>
-    <div class="screen-sub">What's asked for, what's confirmed, what's still open.</div>
-
-    <div class="mission-card card-sand" style="margin-top:16px">
-      <div class="mission-card-num">TPK Māori Development Fund</div>
-      <div class="mission-card-name">~$52,200 ask</div>
-      <div class="mission-card-dca">Four-phase proposal, drafted.</div>
-      <div class="mission-card-outcomes"><span class="tag tag-sand">Draft</span></div>
-      <div class="mission-card-footer"><span>Update status below once submitted</span></div>
-    </div>
-
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-top:20px;margin-bottom:10px">
-      <div class="section-label" style="margin-bottom:0">Funding applications</div>
-      <button class="add-btn" onclick="toggleForm('funding-form')">+</button>
-    </div>
-    <div class="add-form" id="funding-form">
-      <input type="hidden" id="fu-edit-id" value="" />
-      <input type="text" id="fu-source-i" placeholder="Funding source (e.g. TPK Māori Development Fund)" />
-      <input type="text" id="fu-amount-i" placeholder="Amount requested" />
-      <select id="fu-status-i">
-        <option value="draft">Draft</option>
-        <option value="submitted">Submitted</option>
-        <option value="under_review">Under review</option>
-        <option value="approved">Approved</option>
-        <option value="declined">Declined</option>
-      </select>
-      <input type="text" id="fu-dates-i" placeholder="Key dates (deadline / decision)" />
-      <input type="text" id="fu-notes-i" placeholder="Notes" />
-      <div class="form-row">
-        <button class="btn-save" id="fu-save-btn" onclick="addFunding()">Add application</button>
-        <button class="btn-cancel" onclick="closeFundingForm()">✕</button>
-      </div>
-    </div>
-    <div id="funding-list"><div class="loading">Loading...</div></div>
-  </div>
-  <nav class="bottom-nav">
-    <div class="nav-item" onclick="showScreen('dashboard')">Dashboard</div>
-    <div class="nav-item" onclick="showScreen('governance')" style="display:none">Governance</div>
-    <div class="nav-item active" onclick="showScreen('funding')">Funding</div>
-    <div class="nav-item" onclick="showScreen('loops')">Loops</div>
-    <div class="nav-item" onclick="showScreen('decisions')">Decisions</div>
-    <div class="nav-item" onclick="showScreen('coach')">Coach</div>
-    <div class="nav-item" onclick="showScreen('capability')">Capability</div>
     <div class="nav-spacer"></div>
     <button class="review-btn" onclick="showScreen('review')">Weekly Review</button>
   </nav>
@@ -840,7 +803,6 @@ function showScreen(name) {
   if(name==='review') startReview();
   if(name==='coach') loadCoachCtx();
   if(name==='capability') renderCapAll();
-  if(name==='funding') renderFunding();
 }
 
 // ═══════════════════
@@ -860,26 +822,82 @@ function renderCapAll() {
   renderPatterns();
   renderEvidence();
   renderKupu();
-  renderPhrases();
   renderRerenga();
 }
 
 let capKupu = [];
+let rerengaSelection = {'Tūingoa':null, 'Tūmahi':null, 'Tūāhua':null};
+let rerengaOrder = ['Tūingoa','Tūmahi','Tūāhua'];
+
+function rerengaCurrentStep() {
+  return rerengaOrder.find(cat => rerengaSelection[cat] === null);
+}
+
+function renderRerenga() {
+  const lineEl = document.getElementById('rerenga-line');
+  const labelEl = document.getElementById('rerenga-step-label');
+  const chipsEl = document.getElementById('rerenga-chips');
+  const skipBtn = document.getElementById('rerenga-skip-btn');
+  if(!lineEl) return;
+
+  const parts = rerengaOrder.map(cat => rerengaSelection[cat] ? rerengaSelection[cat].word : `<span class="placeholder-word">[${cat}]</span>`);
+  lineEl.innerHTML = parts.join(' ');
+
+  const step = rerengaCurrentStep();
+  if(!step) {
+    labelEl.textContent = 'Sentence built — tap Reset to build another';
+    chipsEl.innerHTML = '';
+    skipBtn.style.display = 'none';
+    return;
+  }
+  labelEl.textContent = `Pick a ${step} word`;
+  skipBtn.style.display = step === 'Tūāhua' ? 'inline-block' : 'none';
+  const options = capKupu.filter(k => k.category === step);
+  chipsEl.innerHTML = options.length ? options.map(k => `<div class="rerenga-chip" onclick='rerengaPick(${JSON.stringify(step)}, ${JSON.stringify(k.id)})'>${k.word}${k.meaning?`<small>${k.meaning}</small>`:''}</div>`).join('') : `<div class="empty-state">No ${step} words yet — add some in your kupu list below.</div>`;
+}
+
+function rerengaPick(cat, id) {
+  const k = capKupu.find(x => x.id === id);
+  if(!k) return;
+  rerengaSelection[cat] = k;
+  renderRerenga();
+}
+
+function rerengaSkip() {
+  const step = rerengaCurrentStep();
+  if(step) rerengaSelection[step] = {word:'', meaning:''};
+  renderRerenga();
+}
+
+function rerengaReset() {
+  rerengaSelection = {'Tūingoa':null, 'Tūmahi':null, 'Tūāhua':null};
+  renderRerenga();
+}
 
 const KUPU_TYPE_CLASS = {Kupu:'stage-recall', 'Whakataukī':'stage-transfer', Karanga:'stage-produce', Waiata:'stage-automate'};
+const KUPU_CAT_CLASS = {'Tūingoa':'stage-produce', 'Tūmahi':'stage-automate', 'Tūāhua':'stage-transfer'};
+let kupuCatFilter = 'all';
 
 function kupuHTML(k) {
   const type = k.type || 'Kupu';
   return `<div class="kupu-card">
-    <div style="flex:1"><div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><div class="kupu-word">${k.word}</div><span class="stage-badge ${KUPU_TYPE_CLASS[type]||'stage-recall'}">${type}</span></div><div class="kupu-meaning">${k.meaning||''}</div>${k.context?`<div class="kupu-context">${k.context}</div>`:''}</div>
+    <div style="flex:1"><div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><div class="kupu-word">${k.word}</div><span class="stage-badge ${KUPU_TYPE_CLASS[type]||'stage-recall'}">${type}</span>${k.category?`<span class="stage-badge ${KUPU_CAT_CLASS[k.category]||'stage-recognise'}">${k.category}</span>`:''}</div><div class="kupu-meaning">${k.meaning||''}</div>${k.context?`<div class="kupu-context">${k.context}</div>`:''}</div>
     <button class="edit-btn" onclick='editKupu(${JSON.stringify(k.id)})'>Edit</button>
   </div>`;
+}
+
+function filterKupuByCat(cat, btn) {
+  kupuCatFilter = cat;
+  document.querySelectorAll('#kupu-cat-filter .filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderKupu();
 }
 
 function renderKupu() {
   const el = document.getElementById('kupu-list');
   if(!el) return;
-  el.innerHTML = capKupu.length ? capKupu.map(kupuHTML).join('') : '<div class="empty-state">No kupu logged yet.</div>';
+  const filtered = kupuCatFilter==='all' ? capKupu : capKupu.filter(k=>k.category===kupuCatFilter);
+  el.innerHTML = filtered.length ? filtered.map(kupuHTML).join('') : '<div class="empty-state">No kupu logged yet.</div>';
 }
 
 function editKupu(id) {
@@ -887,6 +905,7 @@ function editKupu(id) {
   if(!k) return;
   document.getElementById('ku-edit-id').value = id;
   document.getElementById('ku-type-i').value = k.type || 'Kupu';
+  document.getElementById('ku-cat-i').value = k.category || '';
   document.getElementById('ku-word-i').value = k.word || '';
   document.getElementById('ku-meaning-i').value = k.meaning || '';
   document.getElementById('ku-context-i').value = k.context || '';
@@ -904,234 +923,26 @@ function closeKupuForm() {
 async function addKupu() {
   const editId = document.getElementById('ku-edit-id').value;
   const type = document.getElementById('ku-type-i').value;
+  const category = document.getElementById('ku-cat-i').value;
   const word = document.getElementById('ku-word-i').value.trim();
   const meaning = document.getElementById('ku-meaning-i').value.trim();
   const context = document.getElementById('ku-context-i').value.trim();
   if(!word) return;
   if(editId) {
-    await dbUpdate('capability_kupu', {type, word, meaning, context}, 'id', editId);
+    await dbUpdate('capability_kupu', {type, category, word, meaning, context}, 'id', editId);
     const idx = capKupu.findIndex(k=>k.id===editId);
-    if(idx>-1) capKupu[idx] = {...capKupu[idx], type, word, meaning, context};
+    if(idx>-1) capKupu[idx] = {...capKupu[idx], type, category, word, meaning, context};
     toast('Kupu updated');
   } else {
-    const {data} = await dbInsert('capability_kupu', {type, word, meaning, context});
+    const {data} = await dbInsert('capability_kupu', {type, category, word, meaning, context});
     if(data) capKupu.unshift(data[0]);
     toast('Kupu added');
   }
   ['ku-word-i','ku-meaning-i','ku-context-i'].forEach(id=>document.getElementById(id).value='');
   document.getElementById('ku-type-i').value = 'Kupu';
+  document.getElementById('ku-cat-i').value = '';
   closeKupuForm();
   renderKupu();
-}
-
-// ═══════════════════
-// FUNDING
-// ═══════════════════
-let capFunding = [];
-
-const FUNDING_STATUS_LABEL = {draft:'Draft', submitted:'Submitted', under_review:'Under review', approved:'Approved', declined:'Declined'};
-const FUNDING_STATUS_TAG = {draft:'tag-dim', submitted:'tag-sage', under_review:'tag-sage', approved:'tag-cacao', declined:'tag-dim'};
-
-function fundingHTML(f) {
-  return `<div class="kupu-card">
-    <div style="flex:1">
-      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><div class="kupu-word">${f.funding_source}</div><span class="tag ${FUNDING_STATUS_TAG[f.status]||'tag-dim'}">${FUNDING_STATUS_LABEL[f.status]||f.status}</span></div>
-      <div class="kupu-meaning">${f.amount_requested||''}</div>
-      ${f.key_dates?`<div class="kupu-context">${f.key_dates}</div>`:''}
-      ${f.notes?`<div class="kupu-context">${f.notes}</div>`:''}
-    </div>
-    <button class="edit-btn" onclick='editFunding(${JSON.stringify(f.id)})'>Edit</button>
-  </div>`;
-}
-
-async function renderFunding() {
-  const el = document.getElementById('funding-list');
-  if(!el) return;
-  if(!capFunding.length) {
-    const {data} = await dbSelect('capability_funding', {order:'created_at', asc:false});
-    capFunding = data || [];
-  }
-  el.innerHTML = capFunding.length ? capFunding.map(fundingHTML).join('') : '<div class="empty-state">No funding applications logged yet.</div>';
-}
-
-function editFunding(id) {
-  const f = capFunding.find(x=>x.id===id);
-  if(!f) return;
-  document.getElementById('fu-edit-id').value = id;
-  document.getElementById('fu-source-i').value = f.funding_source || '';
-  document.getElementById('fu-amount-i').value = f.amount_requested || '';
-  document.getElementById('fu-status-i').value = f.status || 'draft';
-  document.getElementById('fu-dates-i').value = f.key_dates || '';
-  document.getElementById('fu-notes-i').value = f.notes || '';
-  document.getElementById('fu-save-btn').textContent = 'Save changes';
-  document.getElementById('funding-form').classList.add('visible');
-  document.getElementById('funding-form').scrollIntoView({behavior:'smooth', block:'center'});
-}
-
-function closeFundingForm() {
-  document.getElementById('fu-edit-id').value = '';
-  document.getElementById('fu-save-btn').textContent = 'Add application';
-  toggleForm('funding-form');
-}
-
-async function addFunding() {
-  const editId = document.getElementById('fu-edit-id').value;
-  const funding_source = document.getElementById('fu-source-i').value.trim();
-  const amount_requested = document.getElementById('fu-amount-i').value.trim();
-  const status = document.getElementById('fu-status-i').value;
-  const key_dates = document.getElementById('fu-dates-i').value.trim();
-  const notes = document.getElementById('fu-notes-i').value.trim();
-  if(!funding_source) return;
-  if(editId) {
-    await dbUpdate('capability_funding', {funding_source, amount_requested, status, key_dates, notes}, 'id', editId);
-    const idx = capFunding.findIndex(f=>f.id===editId);
-    if(idx>-1) capFunding[idx] = {...capFunding[idx], funding_source, amount_requested, status, key_dates, notes};
-    toast('Funding application updated');
-  } else {
-    const {data} = await dbInsert('capability_funding', {funding_source, amount_requested, status, key_dates, notes});
-    if(data) capFunding.unshift(data[0]);
-    toast('Funding application added');
-  }
-  ['fu-source-i','fu-amount-i','fu-dates-i','fu-notes-i'].forEach(id=>document.getElementById(id).value='');
-  document.getElementById('fu-status-i').value = 'draft';
-  closeFundingForm();
-  renderFunding();
-}
-
-// ═══════════════════
-// PHRASE BANK
-// ═══════════════════
-let capPhrases = [];
-
-function phraseHTML(p) {
-  return `<div class="kupu-card">
-    <div style="flex:1">
-      <div class="kupu-word">${p.phrase}</div>
-      <div class="kupu-meaning">${p.meaning||''}</div>
-      ${p.context_tag?`<div class="kupu-context">${p.context_tag}</div>`:''}
-      <div class="kupu-context" style="font-style:italic">Source: ${p.source}</div>
-    </div>
-    <div style="display:flex;flex-direction:column;gap:6px">
-      <button class="btn-save" style="padding:6px 10px;font-size:11px" onclick='usePhrase(${JSON.stringify(p.id)})'>Use this</button>
-      <button class="edit-btn" onclick='editPhrase(${JSON.stringify(p.id)})'>Edit</button>
-    </div>
-  </div>`;
-}
-
-async function renderPhrases() {
-  const el = document.getElementById('phrase-list');
-  if(!el) return;
-  if(!capPhrases.length) {
-    const {data} = await dbSelect('capability_phrasebank', {order:'created_at', asc:false});
-    capPhrases = data || [];
-  }
-  el.innerHTML = capPhrases.length ? capPhrases.map(phraseHTML).join('') : '<div class="empty-state">No phrases yet — add one from Awhi Kāri, Te Aka, or a fluent speaker.</div>';
-}
-
-function editPhrase(id) {
-  const p = capPhrases.find(x=>x.id===id);
-  if(!p) return;
-  document.getElementById('ph-edit-id').value = id;
-  document.getElementById('ph-phrase-i').value = p.phrase || '';
-  document.getElementById('ph-meaning-i').value = p.meaning || '';
-  document.getElementById('ph-context-i').value = p.context_tag || '';
-  document.getElementById('ph-source-i').value = p.source || '';
-  document.getElementById('ph-save-btn').textContent = 'Save changes';
-  document.getElementById('phrase-form').classList.add('visible');
-  document.getElementById('phrase-form').scrollIntoView({behavior:'smooth', block:'center'});
-}
-
-function closePhraseForm() {
-  document.getElementById('ph-edit-id').value = '';
-  document.getElementById('ph-save-btn').textContent = 'Add phrase';
-  toggleForm('phrase-form');
-}
-
-async function addPhrase() {
-  const editId = document.getElementById('ph-edit-id').value;
-  const phrase = document.getElementById('ph-phrase-i').value.trim();
-  const meaning = document.getElementById('ph-meaning-i').value.trim();
-  const context_tag = document.getElementById('ph-context-i').value.trim();
-  const source = document.getElementById('ph-source-i').value.trim();
-  if(!phrase || !source) return;
-  if(editId) {
-    await dbUpdate('capability_phrasebank', {phrase, meaning, context_tag, source}, 'id', editId);
-    const idx = capPhrases.findIndex(p=>p.id===editId);
-    if(idx>-1) capPhrases[idx] = {...capPhrases[idx], phrase, meaning, context_tag, source};
-    toast('Phrase updated');
-  } else {
-    const {data} = await dbInsert('capability_phrasebank', {phrase, meaning, context_tag, source});
-    if(data) capPhrases.unshift(data[0]);
-    toast('Phrase added to bank');
-  }
-  ['ph-phrase-i','ph-meaning-i','ph-context-i','ph-source-i'].forEach(id=>document.getElementById(id).value='');
-  closePhraseForm();
-  renderPhrases();
-}
-
-// Promote a verified phrase straight into active practice — already verified,
-// since it's sourced, not guessed. This is the "check then use" shortcut.
-async function usePhrase(id) {
-  const p = capPhrases.find(x=>x.id===id);
-  if(!p) return;
-  const {data} = await dbInsert('capability_patterns', {
-    pattern_name: `From ${p.source}`,
-    core_frame: p.phrase,
-    context: p.context_tag || p.meaning || '',
-    stage: 'recognise',
-    verified: true,
-    status: 'verified',
-    repetition_count: 0
-  });
-  if(data) toast('Added to practice — ready to repeat');
-}
-
-// ═══════════════════
-// RERENGA KŌRERO — pattern library
-// ═══════════════════
-let capRerenga = [];
-
-function rerengaHTML(r) {
-  const examples = (r.examples||[]).map(ex => `<div class="kupu-context" style="display:flex;justify-content:space-between;align-items:center;gap:8px">
-    <span>${ex}</span>
-    <button class="btn-save" style="padding:4px 8px;font-size:10px;flex-shrink:0" onclick='useRerenga(${JSON.stringify(r.id)}, ${JSON.stringify(ex)})'>Use this</button>
-  </div>`).join('');
-  const practice = r.practice_base ? `<div class="kupu-context" style="margin-top:8px"><strong>Practice it:</strong> ${r.practice_base}<br/>${(r.practice_words||[]).join(', ')}</div>` : '';
-  return `<div class="kupu-card" style="flex-direction:column;align-items:stretch">
-    <div style="display:flex;justify-content:space-between;align-items:start;gap:8px">
-      <div class="kupu-word">${r.order_index}. ${r.title}</div>
-      ${!r.verified ? '<span class="tag tag-dim">⚠ Unverified</span>' : '<span class="tag tag-sage">Verified</span>'}
-    </div>
-    ${r.when_to_use ? `<div class="kupu-meaning">${r.when_to_use}</div>` : ''}
-    ${r.pattern_template ? `<div class="kupu-context" style="font-weight:600">${r.pattern_template}</div>` : ''}
-    <div style="margin-top:6px">${examples}</div>
-    ${practice}
-  </div>`;
-}
-
-async function renderRerenga() {
-  const el = document.getElementById('rerenga-list');
-  if(!el) return;
-  if(!capRerenga.length) {
-    const {data} = await dbSelect('capability_rerenga', {order:'order_index', asc:true});
-    capRerenga = data || [];
-  }
-  el.innerHTML = capRerenga.length ? capRerenga.map(rerengaHTML).join('') : '<div class="empty-state">No patterns loaded yet.</div>';
-}
-
-async function useRerenga(id, exampleText) {
-  const r = capRerenga.find(x=>x.id===id);
-  if(!r) return;
-  const {data} = await dbInsert('capability_patterns', {
-    pattern_name: r.title,
-    core_frame: exampleText,
-    context: r.when_to_use || '',
-    stage: 'recognise',
-    verified: r.verified,
-    status: r.verified ? 'verified' : 'unverified',
-    repetition_count: 0
-  });
-  if(data) toast(r.verified ? 'Added to practice — ready to repeat' : 'Added, but still unverified — confirm before repeating');
 }
 
 function trackHTML(t) {
@@ -1851,21 +1662,46 @@ async function init() {
       capKupu = kd || [];
       const words = capKupu.map(k=>k.word);
       const kupuToSeed = [
-        {word:'haere', meaning:'go', context:'movement instructions'},
-        {word:'kai', meaning:'eat / food', context:'breakfast instructions'},
-        {word:'noho', meaning:'sit', context:'pattern transfer diagnostic'},
-        {word:'titiro', meaning:'look', context:'pattern transfer diagnostic'},
-        {word:'kakahu', meaning:'clothes', context:'morning routine'},
-        {word:'hū', meaning:'shoes', context:'morning routine'},
-        {word:'parakuihi', meaning:'breakfast', context:'morning routine'},
-        {word:'waka', meaning:'car / vehicle', context:'morning routine'},
-        {word:'tangi', meaning:'cry', context:'emotional context diagnostic'},
-        {word:'taora', meaning:'cloth', context:'emotional context diagnostic'},
-        {word:'kihini', meaning:'kitchen', context:'emotional context diagnostic'},
-        {word:'moenga', meaning:'bed', context:'pattern transfer diagnostic'},
-        {word:'turu', meaning:'chair', context:'pattern transfer diagnostic'},
-        {word:'papa', meaning:'floor', context:'pattern transfer diagnostic'},
-        {word:'waea pukoro', meaning:'phone', context:'pattern transfer diagnostic'},
+        {word:'haere', meaning:'go', category:'Tūmahi', context:'movement instructions'},
+        {word:'kai', meaning:'eat / food', category:'Tūmahi', context:'breakfast instructions'},
+        {word:'noho', meaning:'sit', category:'Tūmahi', context:'pattern transfer diagnostic'},
+        {word:'titiro', meaning:'look', category:'Tūmahi', context:'pattern transfer diagnostic'},
+        {word:'kakahu', meaning:'clothes', category:'Tūingoa', context:'morning routine'},
+        {word:'hū', meaning:'shoes', category:'Tūingoa', context:'morning routine'},
+        {word:'parakuihi', meaning:'breakfast', category:'Tūingoa', context:'morning routine'},
+        {word:'waka', meaning:'car / vehicle', category:'Tūingoa', context:'morning routine'},
+        {word:'tangi', meaning:'cry', category:'Tūmahi', context:'emotional context diagnostic'},
+        {word:'taora', meaning:'cloth', category:'Tūingoa', context:'emotional context diagnostic'},
+        {word:'kihini', meaning:'kitchen', category:'Tūingoa', context:'emotional context diagnostic'},
+        {word:'moenga', meaning:'bed', category:'Tūingoa', context:'pattern transfer diagnostic'},
+        {word:'turu', meaning:'chair', category:'Tūingoa', context:'pattern transfer diagnostic'},
+        {word:'papa', meaning:'floor', category:'Tūingoa', context:'pattern transfer diagnostic'},
+        {word:'waea pukoro', meaning:'phone', category:'Tūingoa', context:'pattern transfer diagnostic'},
+        {word:'pai', meaning:'good', category:'Tūāhua', context:'everyday description'},
+        {word:'nui', meaning:'big', category:'Tūāhua', context:'everyday description'},
+        {word:'iti', meaning:'small', category:'Tūāhua', context:'everyday description'},
+        {word:'reka', meaning:'sweet / tasty', category:'Tūāhua', context:'kai description'},
+        {word:'whero', meaning:'red', category:'Tūāhua', context:'colours'},
+        {word:'kōwhai', meaning:'yellow', category:'Tūāhua', context:'colours'},
+        {word:'kikorangi', meaning:'blue', category:'Tūāhua', context:'colours'},
+        {word:'kākāriki', meaning:'green', category:'Tūāhua', context:'colours'},
+        {word:'mā', meaning:'white', category:'Tūāhua', context:'colours'},
+        {word:'pango', meaning:'black', category:'Tūāhua', context:'colours'},
+        {word:'parauri', meaning:'brown', category:'Tūāhua', context:'colours'},
+        {word:'karaka', meaning:'orange', category:'Tūāhua', context:'colours'},
+        {word:'waiporoporo', meaning:'purple', category:'Tūāhua', context:'colours'},
+        {word:'māwhero', meaning:'pink', category:'Tūāhua', context:'colours'},
+        {word:'hina', meaning:'grey', category:'Tūāhua', context:'colours'},
+        {word:'harikoa', meaning:'happy', category:'Tūāhua', context:'kare-ā-roto / emotions'},
+        {word:'pōuri', meaning:'sad', category:'Tūāhua', context:'kare-ā-roto / emotions'},
+        {word:'pukuriri', meaning:'angry', category:'Tūāhua', context:'kare-ā-roto / emotions'},
+        {word:'mataku', meaning:'scared / afraid', category:'Tūāhua', context:'kare-ā-roto / emotions'},
+        {word:'ngenge', meaning:'tired', category:'Tūāhua', context:'kare-ā-roto / emotions'},
+        {word:'hiamoe', meaning:'sleepy', category:'Tūāhua', context:'kare-ā-roto / emotions'},
+        {word:'hiakai', meaning:'hungry', category:'Tūāhua', context:'kare-ā-roto / emotions'},
+        {word:'aroha', meaning:'love / compassion', category:'Tūāhua', context:'kare-ā-roto / emotions'},
+        {word:'manawanui', meaning:'patient / steadfast', category:'Tūāhua', context:'kare-ā-roto / emotions'},
+        {word:'kaha', meaning:'strong', category:'Tūāhua', context:'kare-ā-roto / emotions'},
       ].filter(k=>!words.includes(k.word));
       if(kupuToSeed.length) {
         const {data: seededKupu} = await dbInsert('capability_kupu', kupuToSeed);
