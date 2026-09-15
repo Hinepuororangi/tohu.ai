@@ -291,75 +291,22 @@ body { background: var(--bg); color: var(--ink); font-family: var(--font-body); 
 
 <!-- DASHBOARD -->
 <div class="screen active" id="screen-dashboard">
-  <div class="principle-bar"><span class="principle-label">How I operate</span><span class="principle-text">I don't measure success by how busy I am. I measure it by the assets, capability, and evidence I create.</span></div>
-  <header class="topbar"><div class="logo">Tohu<sup>AI</sup></div><div class="date-label" id="date-label"></div><div class="mode-pill" onclick="cycleMode()"><span class="mode-dot"></span><span class="mode-label-text">Mode 1 — Capacity</span></div></header>
+  <header class="topbar"><div class="logo">Tohu<sup>AI</sup></div><div class="date-label" id="date-label"></div></header>
   <div class="main">
     <div class="dca-block"><div class="dca-eyebrow">What I'm building</div><div class="dca-headline">Systems that strengthen people, organisations, and communities.</div></div>
-    <div class="outcomes-row">
-      <div class="outcome-tile tile-build"><div class="outcome-num">74</div><div class="outcome-name">Capability</div><div class="outcome-bar"><div class="outcome-bar-fill" style="width:74%"></div></div><div class="outcome-q">What am I getting better at?</div></div>
-      <div class="outcome-tile tile-fund"><div class="outcome-num">61</div><div class="outcome-name">Credibility</div><div class="outcome-bar"><div class="outcome-bar-fill" style="width:61%"></div></div><div class="outcome-q">What proves I can do this?</div></div>
-      <div class="outcome-tile tile-lead"><div class="outcome-num">58</div><div class="outcome-name">Stability</div><div class="outcome-bar"><div class="outcome-bar-fill" style="width:58%"></div></div><div class="outcome-q">What holds even when I don't?</div></div>
-      <div class="outcome-tile tile-run"><div class="outcome-num">82</div><div class="outcome-name">Autonomy</div><div class="outcome-bar"><div class="outcome-bar-fill" style="width:82%"></div></div><div class="outcome-q">Am I more free than yesterday?</div></div>
+    <div class="panel" style="margin-bottom:14px">
+      <div class="section-label">Latest kupu</div>
+      <div id="home-latest-kupu"><div class="loading">Loading...</div></div>
     </div>
-    <div class="grid-2">
-      <div class="panel"><div class="section-label">Today's signal</div><div class="signal-text">What problem am I solving? What will I create today? What evidence will I leave?</div><div class="signal-sub">Creation over consumption. Build assets, not just outputs.</div></div>
-      <div class="constraint-panel"><div class="section-label">What's in the way</div><div class="constraint-text">Which capability am I improving today? Which loop can I close today?</div><span class="tag tag-dim">All Missions</span></div>
-    </div>
-    <div class="grid-2">
-      <div class="panel">
-        <div class="section-label">Close today <button class="add-btn" onclick="toggleForm('loop-form-d')">+</button></div>
-        <div class="loop-list" id="loop-list-d"><div class="loading">Loading...</div></div>
-        <div class="add-form" id="loop-form-d">
-          <input type="text" id="loop-name-d" placeholder="What needs closing today?" />
-          <div class="form-row">
-            <select id="loop-tag-d"><option>Kaitangata 5E</option><option>Parikino Marae</option><option>Ngā Tangata Tiaki</option><option>Ngāti Tama</option><option>WLST</option><option>Te Rūnanga o Tupoho</option><option>Tupoho Whānau Trust</option><option>Te Awa Tupua</option><option>Business</option><option>Legal</option><option>Rauwhenua</option><option>Papakāinga</option><option>Whānau</option><option>Health</option><option>Wealth</option><option>Learning</option><option>Wānanga</option><option>Miscellaneous</option></select>
-            <button class="btn-save" onclick="addLoop()">Add</button>
-            <button class="btn-cancel" onclick="toggleForm('loop-form-d')">✕</button>
-          </div>
-        </div>
-      </div>
-      <div class="panel">
-        <div class="section-label">What I know to be true <button class="add-btn" onclick="toggleForm('dec-form-d')">+</button></div>
-        <div id="dec-list-d"><div class="loading">Loading...</div></div>
-        <div class="add-form" id="dec-form-d">
-          <textarea id="dec-text-d" placeholder="What do you know to be true right now?"></textarea>
-          <div class="form-row">
-            <select id="dec-conf-d"><option>Certain</option><option>This is the pattern</option><option>Non-negotiable</option><option>Committed</option><option>Still figuring out</option></select>
-            <button class="btn-save" onclick="addDecision()">Add</button>
-            <button class="btn-cancel" onclick="toggleForm('dec-form-d')">✕</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="momentum-panel">
-      <div class="section-label momentum-label">🚀 Momentum — This Month</div>
-      <ul class="momentum-list">
-        <li>Built five applications</li>
-        <li>Built two landing pages</li>
-        <li>Started AI application development</li>
-        <li>Entered DeFi</li>
-        <li>Created the Kupu AI concept</li>
-        <li>Presented a governance proposal</li>
-        <li>Began expanding technology network</li>
-      </ul>
-    </div>
-    <div><div class="section-label" style="margin-bottom:14px">Where the energy goes — top 3</div>
-    <div class="mission-cards">
-      <div class="mission-card card-cacao"><div class="mission-card-num">Mission 01</div><div class="mission-card-name">Personal OS</div><div class="mission-card-dca">Transform capability into assets through repeatable systems.</div><div class="mission-card-outcomes"><span class="tag tag-cacao">Capability</span><span class="tag tag-cacao">Credibility</span><span class="tag tag-cacao">Stability</span><span class="tag tag-cacao">Autonomy</span></div><div class="mission-card-footer"><span>Building now</span><span class="m-status m-active">Active</span></div></div>
-      <div class="mission-card card-sage" onclick="showScreen('governance')"><div class="mission-card-num">Mission 02</div><div class="mission-card-name">Governance</div><div class="mission-card-dca">Create a repeatable governance operating system.</div><div class="mission-card-outcomes"><span class="tag tag-sage">1 Active</span><span class="tag tag-dim">2 Waiting</span><span class="tag tag-dim">5 Incubating</span></div><div class="mission-card-footer"><span>Tap to view all 8 →</span><span class="m-status m-active">Active</span></div></div>
-      <div class="mission-card card-sand"><div class="mission-card-num">Mission 03</div><div class="mission-card-name">Kupu</div><div class="mission-card-dca">Build Māori capability through AI, technology, software, and innovation.</div><div class="mission-card-outcomes"><span class="tag tag-sand">Capability</span><span class="tag tag-sand">Credibility</span><span class="tag tag-sand">Stability</span><span class="tag tag-sand">Autonomy</span></div><div class="mission-card-footer"><span>Highest impact</span><span class="m-status m-active">Active</span></div></div>
-    </div></div>
-    <div class="all-missions">View all missions →</div>
+    <div class="track-card" onclick="showScreen('governance')"><div class="track-name">Governance →</div></div>
+    <div class="track-card" onclick="showScreen('kupu')"><div class="track-name">Kupu Bank →</div></div>
+    <div class="track-card" onclick="showScreen('more')"><div class="track-name">More →</div></div>
   </div>
   <nav class="bottom-nav">
-    <div class="nav-item active" onclick="showScreen('dashboard')">Dashboard</div>
+    <div class="nav-item active" onclick="showScreen('dashboard')">Home</div>
     <div class="nav-item" onclick="showScreen('governance')">Governance</div>
-    <div class="nav-item" onclick="showScreen('loops')">Loops</div>
-    <div class="nav-item" onclick="showScreen('decisions')">Decisions</div>
-    <div class="nav-item" onclick="showScreen('coach')">Coach</div>
-    <div class="nav-item" onclick="showScreen('capability')">Capability</div>
-    <div class="nav-spacer"></div>
-    <button class="review-btn" onclick="showScreen('review')">Weekly Review</button>
+    <div class="nav-item" onclick="showScreen('kupu')">Kupu</div>
+    <div class="nav-item" onclick="showScreen('more')">More</div>
   </nav>
 </div>
 
@@ -382,14 +329,10 @@ body { background: var(--bg); color: var(--ink); font-family: var(--font-body); 
     <div class="gov-entity incubating-entity"><div><div class="gov-entity-name">Te Awa Tupua</div><div class="gov-entity-issue">Te Rūnanga o Tupoho sits inside this entity</div></div><span class="m-status m-incubating">Incubating</span></div>
   </div>
   <nav class="bottom-nav">
-    <div class="nav-item" onclick="showScreen('dashboard')">Dashboard</div>
+    <div class="nav-item" onclick="showScreen('dashboard')">Home</div>
     <div class="nav-item active" onclick="showScreen('governance')">Governance</div>
-    <div class="nav-item" onclick="showScreen('loops')">Loops</div>
-    <div class="nav-item" onclick="showScreen('decisions')">Decisions</div>
-    <div class="nav-item" onclick="showScreen('coach')">Coach</div>
-    <div class="nav-item" onclick="showScreen('capability')">Capability</div>
-    <div class="nav-spacer"></div>
-    <button class="review-btn" onclick="showScreen('review')">Weekly Review</button>
+    <div class="nav-item" onclick="showScreen('kupu')">Kupu</div>
+    <div class="nav-item" onclick="showScreen('more')">More</div>
   </nav>
 </div>
 
@@ -411,14 +354,10 @@ body { background: var(--bg); color: var(--ink); font-family: var(--font-body); 
     <div id="loops-full"><div class="loading">Loading...</div></div>
   </div>
   <nav class="bottom-nav">
-    <div class="nav-item" onclick="showScreen('dashboard')">Dashboard</div>
+    <div class="nav-item" onclick="showScreen('dashboard')">Home</div>
     <div class="nav-item" onclick="showScreen('governance')">Governance</div>
-    <div class="nav-item active" onclick="showScreen('loops')">Loops</div>
-    <div class="nav-item" onclick="showScreen('decisions')">Decisions</div>
-    <div class="nav-item" onclick="showScreen('coach')">Coach</div>
-    <div class="nav-item" onclick="showScreen('capability')">Capability</div>
-    <div class="nav-spacer"></div>
-    <button class="review-btn" onclick="showScreen('review')">Weekly Review</button>
+    <div class="nav-item" onclick="showScreen('kupu')">Kupu</div>
+    <div class="nav-item active" onclick="showScreen('more')">More</div>
   </nav>
 </div>
 
@@ -439,14 +378,10 @@ body { background: var(--bg); color: var(--ink); font-family: var(--font-body); 
     <div id="dec-list-f"><div class="loading">Loading...</div></div>
   </div>
   <nav class="bottom-nav">
-    <div class="nav-item" onclick="showScreen('dashboard')">Dashboard</div>
+    <div class="nav-item" onclick="showScreen('dashboard')">Home</div>
     <div class="nav-item" onclick="showScreen('governance')">Governance</div>
-    <div class="nav-item" onclick="showScreen('loops')">Loops</div>
-    <div class="nav-item active" onclick="showScreen('decisions')">Decisions</div>
-    <div class="nav-item" onclick="showScreen('coach')">Coach</div>
-    <div class="nav-item" onclick="showScreen('capability')">Capability</div>
-    <div class="nav-spacer"></div>
-    <button class="review-btn" onclick="showScreen('review')">Weekly Review</button>
+    <div class="nav-item" onclick="showScreen('kupu')">Kupu</div>
+    <div class="nav-item active" onclick="showScreen('more')">More</div>
   </nav>
 </div>
 
@@ -471,14 +406,10 @@ body { background: var(--bg); color: var(--ink); font-family: var(--font-body); 
     </div>
   </div>
   <nav class="bottom-nav">
-    <div class="nav-item" onclick="showScreen('dashboard')">Dashboard</div>
+    <div class="nav-item" onclick="showScreen('dashboard')">Home</div>
     <div class="nav-item" onclick="showScreen('governance')">Governance</div>
-    <div class="nav-item" onclick="showScreen('loops')">Loops</div>
-    <div class="nav-item" onclick="showScreen('decisions')">Decisions</div>
-    <div class="nav-item active" onclick="showScreen('coach')">Coach</div>
-    <div class="nav-item" onclick="showScreen('capability')">Capability</div>
-    <div class="nav-spacer"></div>
-    <button class="review-btn" onclick="showScreen('review')">Weekly Review</button>
+    <div class="nav-item" onclick="showScreen('kupu')">Kupu</div>
+    <div class="nav-item active" onclick="showScreen('more')">More</div>
   </nav>
 </div>
 
@@ -505,14 +436,10 @@ body { background: var(--bg); color: var(--ink); font-family: var(--font-body); 
     <button class="btn-cancel" style="margin-top:8px" onclick="startReview()">Start Again</button>
   </div>
   <nav class="bottom-nav">
-    <div class="nav-item" onclick="showScreen('dashboard')">Dashboard</div>
+    <div class="nav-item" onclick="showScreen('dashboard')">Home</div>
     <div class="nav-item" onclick="showScreen('governance')">Governance</div>
-    <div class="nav-item" onclick="showScreen('loops')">Loops</div>
-    <div class="nav-item" onclick="showScreen('decisions')">Decisions</div>
-    <div class="nav-item" onclick="showScreen('coach')">Coach</div>
-    <div class="nav-item" onclick="showScreen('capability')">Capability</div>
-    <div class="nav-spacer"></div>
-    <button class="review-btn" onclick="showScreen('review')">Weekly Review</button>
+    <div class="nav-item" onclick="showScreen('kupu')">Kupu</div>
+    <div class="nav-item active" onclick="showScreen('more')">More</div>
   </nav>
 </div>
 
@@ -527,7 +454,6 @@ body { background: var(--bg); color: var(--ink); font-family: var(--font-body); 
       <button class="filter-btn" onclick="switchCapTab('diagnostic',this)">Bottleneck Diagnostic</button>
       <button class="filter-btn" onclick="switchCapTab('automation',this)">Automation Engine</button>
       <button class="filter-btn" onclick="switchCapTab('evidence',this)">Evidence Board</button>
-      <button class="filter-btn" onclick="switchCapTab('kupu',this)">Kupu Bank</button>
     </div>
 
     <!-- LAB TAB -->
@@ -649,11 +575,23 @@ body { background: var(--bg); color: var(--ink); font-family: var(--font-body); 
       </div>
       <div id="evidence-list"><div class="loading">Loading...</div></div>
     </div>
+  </div>
+  <nav class="bottom-nav">
+    <div class="nav-item" onclick="showScreen('dashboard')">Home</div>
+    <div class="nav-item" onclick="showScreen('governance')">Governance</div>
+    <div class="nav-item" onclick="showScreen('kupu')">Kupu</div>
+    <div class="nav-item active" onclick="showScreen('more')">More</div>
+  </nav>
+</div>
 
-    <!-- KUPU BANK TAB -->
-    <div id="cap-tab-kupu" class="cap-tab" style="display:none">
-      <div class="panel" style="margin-bottom:14px">
-        <div class="section-label">Grammar basics — automatic reference</div>
+<!-- KUPU BANK (top-level) -->
+<div class="screen" id="screen-kupu">
+  <header class="topbar"><div class="logo">Tohu<sup>AI</sup></div><div class="date-label"></div><div class="mode-pill" onclick="cycleMode()"><span class="mode-dot"></span><span class="mode-label-text">Mode 1 — Capacity</span></div></header>
+  <div class="screen-inner">
+    <div><div class="screen-title">Kupu Bank</div><div class="screen-sub">Words, phrases, and sentences you've actually used.</div></div>
+    <div class="panel" style="margin-bottom:14px">
+      <div class="section-label" style="cursor:pointer" onclick="toggleReference()">Reference — He/Ko, tenses, grammar terms <span id="ref-toggle-arrow">▸</span></div>
+      <div id="reference-panel" style="display:none;margin-top:10px">
         <div class="checklist-row"><span class="checklist-dot"></span><span><b>He</b> — "a/an ___", classifying what kind of thing something is. He kurī tēnā. (That's a dog.)</span></div>
         <div class="checklist-row"><span class="checklist-dot"></span><span><b>Ko</b> — naming/identifying a specific person or thing, especially names and "who." Ko Mere tēnei. (This is Mere.)</span></div>
         <div class="checklist-row"><span class="checklist-dot"></span><span><b>I</b> — simple past, already over. I haere ia. (He/she went.)</span></div>
@@ -661,10 +599,7 @@ body { background: var(--bg); color: var(--ink); font-family: var(--font-body); 
         <div class="checklist-row"><span class="checklist-dot"></span><span><b>Kei te</b> — happening right now. Kei te haere ia. (He/she is going.)</span></div>
         <div class="checklist-row"><span class="checklist-dot"></span><span><b>E...ana</b> — also happening now, more formal register. E haere ana ia.</span></div>
         <div class="checklist-row"><span class="checklist-dot"></span><span><b>Ka</b> — future, or "and then" in a sequence. Ka haere ia āpōpō. (He/she will go tomorrow.)</span></div>
-      </div>
-      <div class="panel" style="margin-bottom:14px">
-        <div class="section-label">Glossary — no grammar background needed</div>
-        <div class="checklist-row"><span class="checklist-dot"></span><span><b>Action word (verb)</b> — the doing word. haere (go), kai (eat), noho (sit), titiro (look)</span></div>
+        <div class="checklist-row" style="border-top:1px solid var(--border-2);margin-top:6px;padding-top:12px"><span class="checklist-dot"></span><span><b>Action word (verb)</b> — the doing word. haere (go), kai (eat), noho (sit), titiro (look)</span></div>
         <div class="checklist-row"><span class="checklist-dot"></span><span><b>Actor</b> — who's doing it. au (I), koe (you), ia (they/he/she), matou (us)</span></div>
         <div class="checklist-row"><span class="checklist-dot"></span><span><b>Frame</b> — a fill-in-the-blank sentence shape you reuse, e.g. "Kei te ___ + ___" </span></div>
         <div class="checklist-row"><span class="checklist-dot"></span><span><b>Progressive</b> — something happening right now, e.g. "I am eating"</span></div>
@@ -672,58 +607,73 @@ body { background: var(--bg); color: var(--ink); font-family: var(--font-body); 
         <div class="checklist-row"><span class="checklist-dot"></span><span><b>Possessive</b> — whose it is, e.g. "your shoes," "my phone"</span></div>
         <div class="checklist-row"><span class="checklist-dot"></span><span><b>Particle</b> — a small linking word that sets up meaning (kei, ki, i, e) rather than a "thing" word</span></div>
       </div>
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px"><div class="section-label" style="margin-bottom:0">My kupu (words I've used or remember)</div><button class="add-btn" onclick="toggleForm('kupu-form')">+</button></div>
-      <div class="add-form" id="kupu-form">
-        <input type="hidden" id="ku-edit-id" value="" />
-        <select id="ku-type-i">
-          <option value="Kupu">Kupu (word)</option>
-          <option value="Whakataukī">Whakataukī</option>
-          <option value="Karanga">Karanga</option>
-          <option value="Waiata">Waiata</option>
-        </select>
-        <select id="ku-cat-i">
-          <option value="">Foundation category (optional)</option>
-          <option value="Tūingoa">Tūingoa — naming word</option>
-          <option value="Tūmahi">Tūmahi — doing word</option>
-          <option value="Tūāhua">Tūāhua — describing word</option>
-        </select>
-        <input type="text" id="ku-word-i" placeholder="Kupu / whakataukī / karanga / waiata" />
-        <input type="text" id="ku-meaning-i" placeholder="Meaning" />
-        <input type="text" id="ku-context-i" placeholder="Where it came up (optional)" />
-        <div class="form-row">
-          <button class="btn-save" id="ku-save-btn" onclick="addKupu()">Add kupu</button>
-          <button class="btn-cancel" onclick="closeKupuForm()">✕</button>
-        </div>
-      </div>
-      <div class="loops-filter" id="kupu-cat-filter">
-        <button class="filter-btn active" onclick="filterKupuByCat('all',this)">All</button>
-        <button class="filter-btn" onclick="filterKupuByCat('Tūingoa',this)">Tūingoa</button>
-        <button class="filter-btn" onclick="filterKupuByCat('Tūmahi',this)">Tūmahi</button>
-        <button class="filter-btn" onclick="filterKupuByCat('Tūāhua',this)">Tūāhua</button>
-      </div>
-      <div class="panel" style="margin-bottom:14px">
-        <div class="section-label">Hanga Rerenga — build a sentence</div>
-        <div class="signal-sub" style="margin-bottom:10px">Tap one word from each block in order. Tūāhua is optional — skip it if the sentence doesn't need one.</div>
-        <div id="rerenga-line" class="rerenga-line"></div>
-        <div id="rerenga-step-label" class="section-label" style="margin-top:6px;margin-bottom:8px"></div>
-        <div id="rerenga-chips" class="rerenga-chips"></div>
-        <div class="form-row" style="margin-top:10px">
-          <button class="btn-cancel" onclick="rerengaReset()">Reset</button>
-          <button class="btn-cancel" id="rerenga-skip-btn" onclick="rerengaSkip()" style="display:none">Skip this block</button>
-        </div>
-      </div>
-      <div id="kupu-list"><div class="loading">Loading...</div></div>
     </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px"><div class="section-label" style="margin-bottom:0">My kupu (words I've used or remember)</div><button class="add-btn" onclick="toggleForm('kupu-form')">+</button></div>
+    <div class="add-form" id="kupu-form">
+      <input type="hidden" id="ku-edit-id" value="" />
+      <select id="ku-type-i">
+        <option value="Kupu">Kupu (word)</option>
+        <option value="Whakataukī">Whakataukī</option>
+        <option value="Karanga">Karanga</option>
+        <option value="Waiata">Waiata</option>
+      </select>
+      <select id="ku-cat-i">
+        <option value="">Foundation category (optional)</option>
+        <option value="Tūingoa">Tūingoa — naming word</option>
+        <option value="Tūmahi">Tūmahi — doing word</option>
+        <option value="Tūāhua">Tūāhua — describing word</option>
+      </select>
+      <input type="text" id="ku-word-i" placeholder="Kupu / whakataukī / karanga / waiata" />
+      <input type="text" id="ku-meaning-i" placeholder="Meaning" />
+      <input type="text" id="ku-context-i" placeholder="Where it came up (optional)" />
+      <div class="form-row">
+        <button class="btn-save" id="ku-save-btn" onclick="addKupu()">Add kupu</button>
+        <button class="btn-cancel" onclick="closeKupuForm()">✕</button>
+      </div>
+    </div>
+    <div class="loops-filter" id="kupu-cat-filter">
+      <button class="filter-btn active" onclick="filterKupuByCat('all',this)">All</button>
+      <button class="filter-btn" onclick="filterKupuByCat('Tūingoa',this)">Tūingoa</button>
+      <button class="filter-btn" onclick="filterKupuByCat('Tūmahi',this)">Tūmahi</button>
+      <button class="filter-btn" onclick="filterKupuByCat('Tūāhua',this)">Tūāhua</button>
+    </div>
+    <div class="panel" style="margin-bottom:14px">
+      <div class="section-label">Hanga Rerenga — build a sentence</div>
+      <div class="signal-sub" style="margin-bottom:10px">Tap one word from each block in order. Tūāhua is optional — skip it if the sentence doesn't need one.</div>
+      <div id="rerenga-line" class="rerenga-line"></div>
+      <div id="rerenga-step-label" class="section-label" style="margin-top:6px;margin-bottom:8px"></div>
+      <div id="rerenga-chips" class="rerenga-chips"></div>
+      <div class="form-row" style="margin-top:10px">
+        <button class="btn-cancel" onclick="rerengaReset()">Reset</button>
+        <button class="btn-cancel" id="rerenga-skip-btn" onclick="rerengaSkip()" style="display:none">Skip this block</button>
+      </div>
+    </div>
+    <div id="kupu-list"><div class="loading">Loading...</div></div>
   </div>
   <nav class="bottom-nav">
-    <div class="nav-item" onclick="showScreen('dashboard')">Dashboard</div>
+    <div class="nav-item" onclick="showScreen('dashboard')">Home</div>
     <div class="nav-item" onclick="showScreen('governance')">Governance</div>
-    <div class="nav-item" onclick="showScreen('loops')">Loops</div>
-    <div class="nav-item" onclick="showScreen('decisions')">Decisions</div>
-    <div class="nav-item" onclick="showScreen('coach')">Coach</div>
-    <div class="nav-item active" onclick="showScreen('capability')">Capability</div>
-    <div class="nav-spacer"></div>
-    <button class="review-btn" onclick="showScreen('review')">Weekly Review</button>
+    <div class="nav-item active" onclick="showScreen('kupu')">Kupu</div>
+    <div class="nav-item" onclick="showScreen('more')">More</div>
+  </nav>
+</div>
+
+<!-- MORE (hub for everything else) -->
+<div class="screen" id="screen-more">
+  <header class="topbar"><div class="logo">Tohu<sup>AI</sup></div><div class="date-label"></div><div class="mode-pill" onclick="cycleMode()"><span class="mode-dot"></span><span class="mode-label-text">Mode 1 — Capacity</span></div></header>
+  <div class="screen-inner">
+    <div><div class="screen-title">More</div><div class="screen-sub">Everything else, tucked out of the way until you need it.</div></div>
+    <div class="track-card" onclick="showScreen('loops')"><div class="track-name">Loops</div><div class="track-hyp" style="font-style:normal">Open loops to close</div></div>
+    <div class="track-card" onclick="showScreen('decisions')"><div class="track-name">Decisions</div><div class="track-hyp" style="font-style:normal">What you know to be true</div></div>
+    <div class="track-card" onclick="showScreen('coach')"><div class="track-name">Coach</div><div class="track-hyp" style="font-style:normal">Talk something through</div></div>
+    <div class="track-card" onclick="showScreen('capability')"><div class="track-name">Capability Lab</div><div class="track-hyp" style="font-style:normal">Bottleneck diagnostic, Automation Engine, Evidence Board</div></div>
+    <div class="track-card" onclick="showScreen('review')"><div class="track-name">Weekly Review</div><div class="track-hyp" style="font-style:normal">Reflect on the week</div></div>
+  </div>
+  <nav class="bottom-nav">
+    <div class="nav-item" onclick="showScreen('dashboard')">Home</div>
+    <div class="nav-item" onclick="showScreen('governance')">Governance</div>
+    <div class="nav-item" onclick="showScreen('kupu')">Kupu</div>
+    <div class="nav-item active" onclick="showScreen('more')">More</div>
   </nav>
 </div>
 
@@ -803,6 +753,23 @@ function showScreen(name) {
   if(name==='review') startReview();
   if(name==='coach') loadCoachCtx();
   if(name==='capability') renderCapAll();
+  if(name==='kupu') { renderKupu(); renderRerenga(); }
+  if(name==='dashboard') renderHomeLatestKupu();
+}
+
+function renderHomeLatestKupu() {
+  const el = document.getElementById('home-latest-kupu');
+  if(!el) return;
+  if(!capKupu.length) { el.innerHTML = '<div class="empty-state">Nothing logged yet.</div>'; return; }
+  el.innerHTML = capKupu.slice(0,3).map(k=>`<div class="kupu-card"><div><div class="kupu-word">${k.word}</div><div class="kupu-meaning">${k.meaning||''}</div></div></div>`).join('');
+}
+
+function toggleReference() {
+  const panel = document.getElementById('reference-panel');
+  const arrow = document.getElementById('ref-toggle-arrow');
+  const open = panel.style.display !== 'none';
+  panel.style.display = open ? 'none' : 'block';
+  arrow.textContent = open ? '▸' : '▾';
 }
 
 // ═══════════════════
@@ -1702,6 +1669,36 @@ async function init() {
         {word:'aroha', meaning:'love / compassion', category:'Tūāhua', context:'kare-ā-roto / emotions'},
         {word:'manawanui', meaning:'patient / steadfast', category:'Tūāhua', context:'kare-ā-roto / emotions'},
         {word:'kaha', meaning:'strong', category:'Tūāhua', context:'kare-ā-roto / emotions'},
+        {word:'pani', meaning:'balm (lip balm) / to rub', category:'Tūmahi', context:'wānanga kōrero'},
+        {word:'panipani', meaning:'to rub in', category:'Tūmahi', context:'wānanga kōrero'},
+        {word:'panipania', meaning:'to smear', category:'Tūmahi', context:'wānanga kōrero — historical account (hands smeared with blood)'},
+        {word:'kotahi', meaning:'one; unity, same', category:'Tūāhua', context:'wānanga kōrero — kotahitanga presentation'},
+        {word:'riu', meaning:'valley (also: entirety of the land, in context)', category:'Tūingoa', context:'wānanga kōrero — "Te Riu o Te Motu"'},
+        {word:'Kua kotahi ia koe, kua kotahi i a au te riu o te motu', meaning:'We have unified, across the entirety of the land', context:'wānanga kōrero — full rerenga using kotahi + riu'},
+        {word:'He kupu auau te panipani mō te pani', meaning:'Panipani is a common word used for pani', context:'wānanga kōrero — full rerenga using panipani + pani'},
+        {word:'Ko ō ringaringa e Taitoko kua panipania e te toto', meaning:'Your hands, Taitoko, are smeared with blood', context:'wānanga kōrero — full rerenga using panipania, from a historical account'},
+        {word:'Ka whakawhiti au ki taku waea', meaning:'I\'m switching to my phone', context:'wānanga chat — real phrase from a participant, not part of the lesson itself'},
+        {word:'māna', meaning:'he will', category:'Tūmahi', context:'wānanga kōrero'},
+        {word:'tīrangi', meaning:'unsettled (a disruptive/stirring thing)', category:'Tūāhua', context:'wānanga kōrero'},
+        {word:'oreore', meaning:'to awaken, to make everyone move, wriggle', category:'Tūmahi', context:'wānanga kōrero'},
+        {word:'Tīrangi - he mea whakaoreore, whakakori i te iwi', meaning:'Tīrangi — a thing that stirs and moves the people', context:'wānanga kōrero — full rerenga using tīrangi + oreore'},
+        {word:'ehara i te mea', meaning:'it\'s not [the case] that... / it\'s not necessarily...', context:'common negation opener, used before explaining the real situation'},
+        {word:'tamaiti nohinohi', meaning:'baby', category:'Tūingoa', context:'wānanga kōrero'},
+        {word:'nohinohi / kōhunghunga', meaning:'baby', category:'Tūingoa', context:'wānanga kōrero — two words given as synonyms for baby'},
+        {word:'I mate a Te Keepa', meaning:'Te Keepa died — 1897/1898', context:'wānanga kōrero — historical dates'},
+        {word:'I mate a Te Kooti', meaning:'Te Kooti died — 1893', context:'wānanga kōrero — historical dates'},
+        {word:'I whakahīa te hāhī Rātana', meaning:'The Rātana church was established — 1918', context:'wānanga kōrero — historical dates'},
+        {word:'E kore koe e kite, e kore au e kite', meaning:'You and I will never see [it] in our lifetimes', type:'Whakataukī', context:'wānanga kōrero — prophecy line'},
+        {word:'Hei tamaiti nohinohi noa māna hei tīrangi i te motu, e kore koe e kite, e kore au e kite', meaning:'There will be a little baby who will eventually move through the land and the people — the likes of which you and I will never see', type:'Whakataukī', context:'wānanga kōrero — full prophecy, weaves together tīrangi + nohinohi + kore + kite'},
+        {word:'awarua', meaning:'te waenganui o te wharepuni — the middle of the meeting house', category:'Tūingoa', context:'wānanga kōrero — place/architectural term'},
+        {word:'katorika', meaning:'Catholic', category:'Tūingoa', context:'wānanga kōrero — denominations'},
+        {word:'mihingare', meaning:'Anglican', category:'Tūingoa', context:'wānanga kōrero — denominations'},
+        {word:'ki tētehi taha', meaning:'on one side', context:'wānanga kōrero'},
+        {word:'Ko koe ko te ringatū ki tētehi taha, ko koe ko te katorika ki tētehi taha, ko au ko te mihingare ki te awarua', meaning:'You as the Ringatū are on one side, you as the Catholic are on one side, I the Anglican am in the middle', context:'wānanga kōrero — full rerenga using awarua + katorika + mihingare + ki tētehi taha'},
+        {word:'kāti', meaning:'stop', category:'Tūmahi', context:'wānanga kōrero'},
+        {word:'te atuatanga / wairuatanga', meaning:'spirituality', category:'Tūingoa', context:'wānanga kōrero'},
+        {word:'hāhi', meaning:'religion', category:'Tūingoa', context:'wānanga kōrero'},
+        {word:'hōmai ki a au', meaning:'give it to me', context:'wānanga kōrero'},
       ].filter(k=>!words.includes(k.word));
       if(kupuToSeed.length) {
         const {data: seededKupu} = await dbInsert('capability_kupu', kupuToSeed);
@@ -1729,6 +1726,7 @@ async function init() {
   } catch(e) { showError('kupu-list', `Connection failed: ${e.message}`); }
 
   renderCapAll();
+  renderHomeLatestKupu();
 }
 
 init();
