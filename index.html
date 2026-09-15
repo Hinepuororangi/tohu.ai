@@ -1707,6 +1707,24 @@ async function init() {
         const {data: seededKupu} = await dbInsert('capability_kupu', kupuToSeed);
         if(seededKupu) capKupu = [...seededKupu, ...capKupu];
       }
+
+      // Backfill category for kupu that already existed before the category field was added
+      const KNOWN_CATEGORY = {
+        haere:'Tūmahi', kai:'Tūmahi', noho:'Tūmahi', titiro:'Tūmahi', tangi:'Tūmahi',
+        kakahu:'Tūingoa', 'hū':'Tūingoa', parakuihi:'Tūingoa', waka:'Tūingoa', taora:'Tūingoa',
+        kihini:'Tūingoa', moenga:'Tūingoa', turu:'Tūingoa', papa:'Tūingoa', 'waea pukoro':'Tūingoa',
+        pai:'Tūāhua', nui:'Tūāhua', iti:'Tūāhua', reka:'Tūāhua',
+        whero:'Tūāhua', 'kōwhai':'Tūāhua', kikorangi:'Tūāhua', 'kākāriki':'Tūāhua', 'mā':'Tūāhua',
+        pango:'Tūāhua', parauri:'Tūāhua', karaka:'Tūāhua', waiporoporo:'Tūāhua', 'māwhero':'Tūāhua', hina:'Tūāhua',
+        harikoa:'Tūāhua', 'pōuri':'Tūāhua', pukuriri:'Tūāhua', mataku:'Tūāhua', ngenge:'Tūāhua',
+        hiamoe:'Tūāhua', hiakai:'Tūāhua', aroha:'Tūāhua', manawanui:'Tūāhua', kaha:'Tūāhua'
+      };
+      const needsBackfill = capKupu.filter(k => !k.category && KNOWN_CATEGORY[k.word]);
+      for(const k of needsBackfill) {
+        const cat = KNOWN_CATEGORY[k.word];
+        await dbUpdate('capability_kupu', {category: cat}, 'id', k.id);
+        k.category = cat;
+      }
     }
   } catch(e) { showError('kupu-list', `Connection failed: ${e.message}`); }
 
